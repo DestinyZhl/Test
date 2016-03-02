@@ -1,0 +1,9 @@
+D:\VM File\PDMS\MVC_PDMS\SPP\SPP.Model\bin\Debug\SPP.Model.dll
+D:\VM File\PDMS\MVC_PDMS\SPP\SPP.Model\bin\Debug\SPP.Model.pdb
+D:\VM File\PDMS\MVC_PDMS\SPP\SPP.Model\bin\Debug\Newtonsoft.Json.dll
+D:\VM File\PDMS\MVC_PDMS\SPP\SPP.Model\bin\Debug\SPP.Common.dll
+D:\VM File\PDMS\MVC_PDMS\SPP\SPP.Model\bin\Debug\SPP.Common.pdb
+D:\VM File\PDMS\MVC_PDMS\SPP\SPP.Model\bin\Debug\Newtonsoft.Json.xml
+D:\VM File\PDMS\MVC_PDMS\SPP\SPP.Model\obj\Debug\SPP.Model.csprojResolveAssemblyReference.cache
+D:\VM File\PDMS\MVC_PDMS\SPP\SPP.Model\obj\Debug\SPP.Model.dll
+D:\VM File\PDMS\MVC_PDMS\SPP\SPP.Model\obj\Debug\SPP.Model.pdb

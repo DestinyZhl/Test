@@ -1,0 +1,1483 @@
+﻿<!-- Main content -->
+<style type="text/css">
+   .table-striped > tbody > tr:nth-of-type(odd)  {
+  background-color: lightgray !important;
+}
+</style>
+<section class="content portal-content">
+
+    <!--次標題 與 搜尋-->
+    <div class="row">
+        <!--次標題與Search keyword-->
+        <div class="col-md-12 col-lg-9">
+            <h4 class="margin-td-5" id="js_search_keywords"></h4>
+        </div><!-- /col-次標題與Search keyword -->
+        <!--col-右方搜尋與功能按鈕列-->
+        <div class="col-md-12 search-field col-lg-3">
+            <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#js_search_modal" id="js_btn_search"><i class="fa fa-search"></i> 查询</a>
+            <a id="btn_export" class="btn btn-default btn-sm" role="button">
+                <i class="glyphicon glyphicon-save"></i> 导出EXL
+            </a>
+        </div><!-- /col-右方搜尋與功能按鈕列-->
+    </div><!--/次標題 與 搜尋-->
+    <div>
+        <ul id="myTab" class="nav nav-tabs"></ul>
+        <div id="myTabContent" class="tab-content">
+        </div>
+    </div>
+    <div id="day_label_th">
+        <label>日期:</label><label id="js_datetime"></label> <label>时段:</label><label id="js_time_interval"></label> <label>制程直通率: </label><label id="js_process_first_pass_yield"></label>
+    </div>
+    <div id="week_label_th">
+        <b> <label id="interval_week_date"></label> 产能汇总报告</b>
+    </div>
+    <div class="row">
+        <!--表格-->
+        <div class="col-md-12 table-container">
+            <table class="table table-striped table-hover table-condensed nowrap overflow-y" id="js_ppcheckdata_datatable">
+                <thead>
+                    <tr>
+                        <th class="table-col-seq nosort">Seq</th>
+                        <th>制程序号</th>
+                        <th>场地</th>
+                        <th>功能厂</th>
+                        <th>制程</th>
+                        <th>颜色</th>
+                        <th>负责主管</th>
+                        <th>目标良率</th>
+                        <th>总计划</th>
+                        <th>总滚动计划</th>
+                        <th>总领料</th>
+                        <th>总仓库领料</th>
+                        <th>总良品</th>
+                        <th>总试制调机</th>
+                        <th>总入库</th>
+                        <th>总NG</th>
+                        <th>总滚动达成率</th>
+                        <th>总最终良率</th>
+                        <th>计划</th>
+                        <th>领料</th>
+                        <th>仓库领料</th>
+                        <th>良品</th>
+                        <th>试制调机</th>
+                        <th>入库</th>
+                        <th>NG</th>
+                        <th>达成率</th>
+                        <th>良率</th>
+                        <th>WIP</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th class="table-col-seq nosort">Seq</th>
+                        <th>制程序号</th>
+                        <th>场地</th>
+                        <th>功能厂</th>
+                        <th>制程</th>
+                        <th>颜色</th>
+                        <th>负责主管</th>
+                        <th>目标良率</th>
+                        <th>总计划</th>
+                        <th>总滚动计划</th>
+                        <th>总领料</th>
+                        <th>总仓库领料</th>
+                        <th>总良品</th>
+                        <th>总试制调机</th>
+                        <th>总入库</th>
+                        <th>总NG</th>
+                        <th>总滚动达成率</th>
+                        <th>总最终良率</th>
+                        <th>计划</th>
+                        <th>领料</th>
+                        <th>仓库领料</th>
+                        <th>良品</th>
+                        <th>试制调机</th>
+                        <th>入库</th>
+                        <th>NG</th>
+                        <th>达成率</th>
+                        <th>良率</th>
+                        <th>WIP</th>
+                    </tr>
+                </tfoot>
+            </table>
+            @*周报*@
+            <table class="table table-striped table-hover table-condensed nowrap" style="display:none" id="js_ppcheckdata_week">
+                <thead>
+                    <tr>
+
+                        <th>日期 <br />制程</th>
+                        <th>Total<br />计划</th>
+                        <th>Total<br />实际</th>
+                        <th>Total<br />达成率</th>
+                        <th>(周一)<br />计划</th>
+                        <th>(周一)<br />实际</th>
+                        <th>(周一)<br />达成率</th>
+                        <th>(周二)<br />计划</th>
+                        <th>(周二)<br />实际</th>
+                        <th>(周二)<br />达成率</th>
+                        <th>(周三)<br />计划</th>
+                        <th>(周三)<br />实际</th>
+                        <th>(周三)<br />达成率</th>
+                        <th>(周四)<br />计划</th>
+                        <th>(周四)<br />实际</th>
+                        <th>(周四)<br />达成率</th>
+                        <th>(周五)<br />计划</th>
+                        <th>(周五)<br />实际</th>
+                        <th>(周五)<br />达成率</th>
+                        <th>(周六)<br />计划</th>
+                        <th>(周六)<br />实际</th>
+                        <th>(周六)<br />达成率</th>
+                        <th>(周日)<br />计划</th>
+                        <th>(周日)<br />实际</th>
+                        <th>(周日)<br />达成率</th>
+                        <th>累计欠量</th>
+                    </tr>
+                </thead>
+
+            </table>
+            @*月报*@@*时间段*@
+            <table class="table table-striped table-hover table-condensed nowrap" style="display:none" id="js_ppcheckdata_mounth">
+                <thead>
+                    <tr>
+                        @*<th>序号</th>*@
+                        <th>制程</th>
+                        <th>Total-计划</th>
+                        <th>Total-实际</th>
+                        <th>Total-达成率</th>
+                    </tr>
+                </thead>
+
+            </table>
+            <div id="page" class="row"></div>
+
+
+        </div><!--/表格-->
+    </div><!-- / 內容 表格列 -->
+    <hr class="hr-custom">
+</section><!-- /.content -->
+
+@section ViewModals{
+    <!-- Search Modal -->
+    <div class="modal fade" id="js_search_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">查询条件</h4>
+                </div>
+                <div class="modal-body form-horizontal">
+                    <div class="row">
+                        <form id="js_form_query" data-need-validate="true">
+                            <div class="form-group col-xs-12 col-md-6">
+                                <label class="col-sm-5 control-label" for="js_s_input_customer">客户</label>
+                                <div class="col-sm-7 ">
+                                    <select class="form-control input-sm" id="js_s_input_customer" name="Customer"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <label class="col-sm-5 control-label" for="js_s_input_project">专案</label>
+                                <div class="col-sm-7 ">
+                                    <select class="form-control input-sm " id="js_s_input_project" name="Project"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <label class="col-sm-5 control-label" for="js_s_input_product_phase">生产阶段</label>
+                                <div class="col-sm-7 ">
+                                    <select class="form-control input-sm " id="js_s_input_product_phase" name="Product_Phase"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <label class="col-sm-5 control-label" for="js_s_input_part_types">部件类型</label>
+                                <div class="col-sm-7 ">
+                                    <select class="form-control input-sm " id="js_s_input_part_types" name="Part_Types"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group col-xs-12 col-md-6">
+                                <label class="col-sm-5 control-label" for="js_s_input_color">颜色</label>
+                                <div class="col-sm-7 ">
+                                    <select class="form-control input-sm" id="js_s_input_color" name="Color"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <label class="col-sm-5 control-label" for="js_s_select_type">查询类型</label>
+                                <div class="col-sm-7">
+                                    <select id="js_s_select_type" name="Select_Type" class="form-control input-sm">
+                                        <option value="daily" selected="selected">日报</option>
+                                        <option value="weekly">周报</option>
+                                        <option value="monthly">月报</option>
+                                        <option value="time">时间段</option>
+                                    </select>
+                                </div>
+                            </div>
+                            @*日报选项*@
+                            <div class="form-group col-xs-12 col-md-6" id="day_Select">
+                                <label class="col-sm-5 control-label" for="js_s_input_date">日期</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" name="Reference_Date" class="form-control input-sm date" id="js_s_input_date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6" id="day_time_select">
+                                <label class="col-sm-5 control-label" for="js_s_input_interval_time">时段选择</label>
+                                <div class="col-sm-7">
+                                    <select multiple="multiple" size="4" class="form-control input-sm" id="js_s_input_interval_time" name="Interval_Time"></select>
+                                </div>
+                            </div>
+                            @*周报选项*@
+                            <div class="form-group col-xs-12 col-md-6" id="week_Select_start" hidden="hidden">
+                                <label class="col-sm-5 control-label" for="js_s_input_weekdate_start">周所在日期</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" name="Week_Date_Start" class="form-control input-sm date" id="js_s_input_weekdate_start">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6" id="week_Select_end" hidden="hidden">
+                                <label class="col-sm-5 control-label" for="js_s_input_ref_date">周期</label>
+                                <div class="col-sm-7">
+                                    <input type="text" disabled="disabled" name="week_interval" class="form-control input-sm" id="js_s_input_week_interval">
+                                </div>
+
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6" id="week_version" hidden="hidden">
+                                <label class="col-sm-5 control-label" for="js_s_input_week_verion">版本</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control input-sm " id="js_s_input_week_verion" name="Week_Version"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6" id="week_version_date" hidden="hidden">
+                                <label class="col-sm-5 control-label" for="js_s_input_week_verion_date">版本时间段</label>
+                                <div class="col-sm-7">
+                                    <input type="text" disabled="disabled" name="week_interval" class="form-control input-sm" id="js_s_input_week_verion_date">
+                                </div>
+                            </div>
+                            @*月报选项*@
+                            <div class="form-group col-xs-12 col-md-6" id="month_Select" hidden="hidden">
+                                <label class="col-sm-5 control-label" for="js_s_begin_date_month">月所在日期</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" name="Month_Date_Start" class="form-control input-sm date" id="js_s_begin_date_month">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6" id="month_label" hidden="hidden">
+                                <label class="col-sm-5 control-label" for="js_s_input_mounth_interval">周期</label>
+                                <div class="col-sm-7">
+                                    <input type="text" disabled="disabled" name="month_interval" class="form-control input-sm" id="js_s_input_mounth_interval">
+                                    @*<input type="text" hidden="hidden" name="Interval_Date_Start" id="Interval_Date_Start">
+                                        <input type="text" hidden="hidden" name="Interval_Date_End" id="Interval_Date_End">*@
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6" id="month_version" hidden="hidden">
+                                <label class="col-sm-5 control-label" for="js_s_input_month_verion">版本</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control input-sm " id="js_s_input_month_verion" name="Month_Version"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6" id="month_version_date" hidden="hidden">
+                                <label class="col-sm-5 control-label" for="js_s_input_month_verion_date">版本时间段</label>
+                                <div class="col-sm-7">
+                                    <input type="text" disabled="disabled" name="month_interval" class="form-control input-sm" id="js_s_input_month_verion_date">
+                                </div>
+                            </div>
+                            @*时间段*@
+                            <div class="form-group col-xs-12 col-md-6" id="time_Select_Start" hidden="hidden">
+                                <label class="col-sm-5 control-label" for="js_s_start_date_interval">开始日期</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" name="Interval_Date_Start" class="form-control input-sm date" id="Interval_Date_Start">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6" id="time_Select_End" hidden="hidden">
+                                <label class="col-sm-5 control-label" for="js_s_end_date_interval">结束日期</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" name="Interval_Date_End" class="form-control input-sm date" id="Interval_Date_End">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6" id="time_version" hidden="hidden">
+                                <label class="col-sm-5 control-label" for="js_s_verion_interval">版本</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control input-sm " id="js_s_verion_interval" name="js_s_verion_interval"></select>
+                                    <input type="hidden" name="Verion_Interval" id="Verion_Interval" />
+                                </div>
+                            </div>
+                            <input type="hidden" name="Tab_Select_Text" id="js_tab_select_text" value="0" />
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-search" type="button" data-toggle="popover" data-placement="top"
+                            title="查询时间长，耐心等待" data-content="查询时间大于7天，查询会稍有延迟，请耐心等待！" class="btn btn-primary btn-query">
+                        <i class="fa fa-search"></i>
+                        查询报表
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+@section ViewScripts{
+    <script type="text/javascript">
+        $(function () {
+            var subDatatable = null;
+            var ppCheckDataUrls = {
+                QueryPPCheckDatas: '@Url.Action("QueryReportDatas", "EventReportManager")',
+                GetCustomerSource: '@Url.Action("GetCustomerSource", "EventReportManager")',
+                GetProjectSource: '@Url.Action("GetProjectSource", "EventReportManager")',
+                GetProductPhaseSource: '@Url.Action("GetProductPhaseSource", "EventReportManager")',
+                GetPartTypesSource: '@Url.Action("GetPartTypesSource", "EventReportManager")',
+                GetColorSource: '@Url.Action("GetColorSource", "EventReportManager")',
+                GetIntervalTime: '@Url.Action("GetIntervalTime", "EventReportManager")',
+                EditWIP: '@Url.Action("EditWIP", "EventReportManager")',
+                DoExportPPCheckData: '@Url.Action("DoExportProductReport", "EventReportManager")',
+                DoExportWeeklyData: '@Url.Action("DoExportWeeklyData", "EventReportManager")',
+                DoExportIntervalData: '@Url.Action("DoExportIntervalData", "EventReportManager")',
+                
+                GetVersionSource: '@Url.Action("GetVersionSource", "EventReportManager")',
+                GetWeekVersionSource: '@Url.Action("GetWeekVersionSource", "EventReportManager")',
+                GetDateTime: '@Url.Action("GetDateTime", "EventReportManager")',
+                QueryTimeSpanReport: '@Url.Action("QueryTimeSpanReport", "EventReportManager")',
+                QueryWeekReport: '@Url.Action("QueryWeekReport", "EventReportManager")',
+                QueryVersionInterval: '@Url.Action("GetVersionBeginEndDate", "EventReportManager")',
+            };
+
+            function onePassFunction() {
+                var dataTable = PPCheckData.GetTabDataTable();
+                var onePass = 100.00;
+                dataTable
+                    .rows()
+                    .every(function (rowIdx, tableLoop, rowLoop) {
+                        var row = $('#js_ppcheckdata_datatable>tbody>tr').eq(rowIdx);
+                        var target_Yield = row.children().eq(7).text() + '%';
+                        row.children().eq(7).text(target_Yield);
+                        var rolling = row.children().eq(16).text() + '%';
+                        row.children().eq(16).text(rolling);
+                        var tyield = row.children().eq(17).text() + '%';
+                        row.children().eq(17).text(tyield);
+                        var tyield = row.children().eq(25).text() + '%';
+                        row.children().eq(25).text(tyield);
+                        var tyield = row.children().eq(26).text() + '%';
+                        row.children().eq(26).text(tyield);
+
+                        var FinallyYield = parseInt(row.children().eq(17).text()) / 100.00;
+                        onePass = onePass * FinallyYield;
+                    });
+                onePass = onePass.toFixed(2);
+                $("#js_process_first_pass_yield").text(onePass + "%");
+            }
+
+            //日报表初始化绑定
+            var PPCheckData = (function () {
+                //#region columns
+                var columns = [
+
+                    {
+                        data: null,
+                        className: "table-col-seq min-col-xs"
+                    }, {
+                        data: "Process_Seq",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "Place",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "FunPlant",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "Process",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "Color",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "DRI",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "Target_Yield",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "All_Product_Plan",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "All_Product_Plan_Sum",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "All_Picking_QTY",
+                        className: "text-center min-col-xs"
+                    }, {
+                        data: "All_WH_Picking_QTY",
+                        className: "min-col-xs text-center"
+                    }, {
+
+                        data: "All_Good_QTY",
+                        className: "text-center min-col-xs"
+                    }, {
+                        data: "All_Adjust_QTY",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "All_WH_QTY",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "All_NG_QTY",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "All_Rolling_Yield_Rate",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "All_Finally_Field",
+                        className: "min-col-xs text-center finally_field"
+                    }, {
+                        data: "Product_Plan",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "Picking_QTY",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "WH_Picking_QTY",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "Good_QTY",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "Adjust_QTY",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "WH_QTY",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "NG_QTY",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "Rolling_Yield_Rate",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "Finally_Field",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "WIP_QTY",
+                        className: "min-col-xs text-center"
+
+                    }
+                ];
+                //#endregion
+                var _getParams = function () {
+                    return $('#js_form_query').serialize().replace(/\+/g, " ");
+                };
+                //#region _queryPPCheckData
+                var _queryPPCheckData = function (firstLoad) {
+
+                    var config = {
+                        pageId: "#page",
+                        tableId: "#js_ppcheckdata_datatable",
+                        remoteUrl: ppCheckDataUrls.QueryPPCheckDatas,
+                        searchParams: _getParams(),
+                        tableOptions: {
+                            scrollX: true,
+                            autoWidth: true,
+                            columns: columns,
+                            createdRow: function (row, data, index) {
+                                $(row).data('Product_Stage', data.Product_Stage);
+                            }
+                        }
+                    };
+                    var config2 = {
+                        pageId: "#page",
+                        tableId: "#js_ppcheckdata_datatable",
+                        remoteUrl: ppCheckDataUrls.QueryPPCheckDatas,
+
+                        tableOptions: {
+                            scrollX: true,
+                            autoWidth: true,
+                            columns: columns
+                        }
+                    };
+
+                    if (!firstLoad) {
+                        $('#page').page('destroy');
+                        SPP.Utility.Pages.Set(config);
+
+                    } else {
+                        SPP.Utility.Pages.Set(config2);
+                    }
+                    onePassFunction();
+
+                    //_setQueryCriteria();
+                };
+
+                //#endregion
+                return {
+                    Init: function () {
+                        //页面初始化加载查询时，初始化Criteria
+                        SPP.Utility.Criteria.Init();
+                    },
+                    QueryPPCheckDatas: function () {
+                        _queryPPCheckData(false);
+                    },
+                    GetPPCheckDatatable: function () {
+
+                        if (subDatatable == null) {
+
+                            subDatatable = $('#js_ppcheckdata_datatable').DataTable({
+                                paging: false,
+                                searching: false,
+                                ordering: false,
+                                retrieve: true,
+                                columns: columns
+                            });
+                        }
+                        return subDatatable;
+                    },
+                    GetTabDataTable: function () {
+                        subDatatable = $('#js_ppcheckdata_datatable').DataTable({
+                            paging: false,
+                            searching: false,
+                            ordering: false,
+                            retrieve: true,
+                            columns: columns
+                        });
+                        return subDatatable;
+                    }
+
+                }
+            })();
+
+
+            //周报表初始化绑定
+            var WeekDatatable = null;
+            var WeekData = (function () {
+                //#region columns
+                var columns = [
+
+                   {
+                       data: "Process",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "SumPlan",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "SumGoodQty",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "SumYieldRate",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "MondayPlan",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "MondayGoodQty",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "MondayYieldRate",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "TuesdayPlan",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "TuesdayGoodQty",
+                       className: "min-col-md text-center"
+                   },
+                   {
+
+                       data: "TuesdayYieldRate",
+                       className: "text-center min-col-md"
+                   }, {
+                       data: "WednesdayPlan",
+                       className: "min-col-md text-center"
+                   },
+                   {
+
+                       data: "WednesdayGoodQty",
+                       className: "text-center min-col-md"
+                   },
+                   {
+                       data: "WednesdayYieldRate",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "ThursdayPlan",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "ThursdayGoodQty",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "ThursdayYieldRate",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "FridayPlan",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "FridayGoodQty",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "FridayYieldRate",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "SaterdayPlan",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "SaterdayGoodQty",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "SaterdayYieldRate",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "SundayPlan",
+                       className: "min-col-md text-center"
+                   },
+                   {
+                       data: "SundayGoodQty",
+                       className: "min-col-md text-center"
+                   }
+                    , {
+                        data: "SundayYieldRate",
+                        className: "min-col-md text-center"
+                    },
+                    {
+                        data: null,
+                        createdCell: function (td, cellData, rowData, row, col) {
+
+                            $(td).html(rowData.SumPlan - rowData.SumGoodQty);
+                        },
+                        className: "min-col-md text-center"
+                    }
+                ];
+                //#endregion
+                var _getParams = function () {
+                    return $('#js_form_query').serialize().replace(/\+/g, " ");
+                };
+                //#region _queryPPCheckData
+                var _queryWeekData = function (firstLoad) {
+
+                    var config = {
+                        pageId: "#page",
+                        tableId: "#js_ppcheckdata_week",
+                        remoteUrl: ppCheckDataUrls.QueryWeekReport,
+                        searchParams: _getParams(),
+                        tableOptions: {
+                            scrollX: true,
+                            autoWidth: true,
+                            columns: columns
+                        }
+                    };
+                    if (!firstLoad) {
+                        $('#page').page('destroy');
+                        SPP.Utility.Pages.Set(config);
+                        }
+                };
+
+                //#endregion
+                return {
+                    Init: function () {
+                        //页面初始化加载查询时，初始化Criteria
+                        SPP.Utility.Criteria.Init();
+                    },
+                    QueryWeekData: function () {
+                        _queryWeekData(false);
+                    },
+
+                }
+            })();
+
+
+            //月报表初始化绑定
+            var MounthDatatable = null;
+            var MounthData = (function () {
+                //#region columns
+                var columns = [
+
+                    {
+                        data: "Process",
+                        className: "min-col-md text-center"
+                    }, {
+                        data: "SumPlan",
+                        className: "min-col-md text-center"
+                    }, {
+                        data: "SumGoodQty",
+                        className: "min-col-md text-center"
+                    }, {
+                        data: "SumYieldRate",
+                        className: "min-col-md text-center"
+                    }
+                ];
+                //#endregion
+                var _getParams = function () {
+                    return $('#js_form_query').serialize().replace(/\+/g, " ");
+                };
+                //#region _queryPPCheckData
+                var _queryMounthData = function (firstLoad) {
+
+                    var config = {
+                        pageId: "#page",
+                        tableId: "#js_ppcheckdata_mounth",
+                        remoteUrl: ppCheckDataUrls.QueryTimeSpanReport,
+                        searchParams: _getParams(),
+                        tableOptions: {
+                            scrollX: true,
+                            autoWidth: true,
+                            columns: columns
+
+                        }
+                    };
+                    var config2 = {
+                        pageId: "#page",
+                        tableId: "#js_ppcheckdata_mounth",
+                        remoteUrl: ppCheckDataUrls.QueryTimeSpanReport,
+
+                        tableOptions: {
+                            scrollX: true,
+                            autoWidth: true,
+                            columns: columns
+                        }
+                    };
+
+                    if (!firstLoad) {
+                        $('#page').page('destroy');
+                        SPP.Utility.Pages.Set(config);
+
+                    } else {
+                        SPP.Utility.Pages.Set(config2);
+                    }
+
+
+                    //_setQueryCriteria();
+                };
+
+                //#endregion
+                return {
+                    Init: function () {
+                        //页面初始化加载查询时，初始化Criteria
+                        SPP.Utility.Criteria.Init();
+                    },
+                    QueryMounthData: function () {
+                        _queryMounthData(false);
+                    },
+                    GetDataTables: function () {
+                        if (WeekDatatable == null) {
+                            WeekDatatable = $('#js_ppcheckdata_mounth').DataTable({
+                                paging: false,
+                                searching: false,
+                                ordering: false,
+                                retrieve: true,
+                                columns: columns,
+                            });
+                        }
+                        return WeekDatatable;
+                    }
+
+                }
+            })();
+
+            //#region 查询条件的五级联动
+            //初始化数据
+            GetCustomer();
+            GetInterval();
+            $("#js_s_input_customer").change(function ff() {
+                GetProject();
+            });
+            $("#js_s_input_project").change(function ff() {
+                GetProductPhase();
+            });
+            $("#js_s_input_product_phase").change(function ff() {
+                GetPartTypes();
+            });
+            $("#js_s_input_part_types").change(function ff() {
+                GetColor();
+            });
+            //报表类型改变时候
+            $("#js_s_select_type").change(function () {
+                if ($("#js_s_select_type").val() == "daily")  //选择的类型为日报表
+                {
+
+                    $("#week_label_th").hide();
+                    $("#day_label_th").show();
+
+                    $("#day_time_select").show();
+                    if ($("#js_ppcheckdata_mounth_wrapper").length > 0)
+                    {
+                        $("#js_ppcheckdata_mounth_wrapper").hide();
+                    }
+                    if ($("#js_ppcheckdata_week_wrapper").length > 0) {
+                        $("#js_ppcheckdata_week_wrapper").hide();
+                    }
+                    $("#js_ppcheckdata_datatable").show();
+                    $("#js_ppcheckdata_mounth").hide();
+                    $("#js_ppcheckdata_week").hide();
+                    $("#day_Select").show();
+
+                    $("#week_Select_start").hide();
+                    $("#week_Select_end").hide();
+                    $("#week_version").hide();
+                    $("#week_version_date").hide();
+                    $("#month_version_date").hide();
+                    $("#month_Select").hide();
+                    $("#month_label").hide();
+                    $("#month_version").hide();
+                    $("#time_Select_Start").hide();
+                    $("#time_Select_End").hide();
+                    $("#time_version").hide();
+                }
+                if ($("#js_s_select_type").val() == "weekly")  //选择的类型为周报表
+                {
+
+                    if ($("#js_ppcheckdata_mounth_wrapper").length > 0) {
+                        $("#js_ppcheckdata_mounth_wrapper").hide();
+                    }
+                    if ($("#js_ppcheckdata_datatable_wrapper").length > 0) {
+                        $("#js_ppcheckdata_datatable_wrapper").hide();
+                    }
+                    $("#week_label_th").show();
+                    $("#day_label_th").hide();
+                    $("#js_ppcheckdata_week").show();
+                    $("#js_ppcheckdata_datatable").hide();
+                    $("#js_ppcheckdata_mounth").hide();
+                    $("#day_time_select").hide();
+                    $("#day_Select").hide();
+                    $("#week_Select_start").show();
+                    $("#week_Select_end").show();
+                    $("#week_version").show();
+                    $("#week_version_date").hide();
+                    $("#month_version_date").hide();
+                    $("#month_Select").hide();
+                    $("#month_label").hide();
+                    $("#month_version").hide();
+                    $("#time_Select_Start").hide();
+                    $("#time_Select_End").hide();
+                    $("#time_version").hide();
+
+                    var myDate = new Date();
+                    myDate = myDate.getFullYear() + "-" + (myDate.getMonth()+ 1) + "-" + myDate.getDate();
+                    $("#js_s_input_weekdate_start").val(myDate);
+                    GetIntervel(myDate);
+                    GetweekVersion("js_s_input_week_verion", myDate);
+
+                }
+                if ($("#js_s_select_type").val() == "monthly")  //选择的类型为月报表
+                {
+
+                    if ($("#js_ppcheckdata_week_wrapper").length > 0) {
+                        $("#js_ppcheckdata_week_wrapper").hide();
+                    }
+                    if ($("#js_ppcheckdata_datatable_wrapper").length > 0) {
+                        $("#js_ppcheckdata_datatable_wrapper").hide();
+                    }
+
+                    $("#week_label_th").show();
+                    $("#day_label_th").hide();
+                    $("#js_ppcheckdata_week").hide();
+                    $("#js_ppcheckdata_datatable").hide();
+                    $("#js_ppcheckdata_mounth").show();
+                    $("#day_time_select").hide();
+                    $("#day_Select").hide();
+                    $("#week_Select_start").hide();
+                    $("#week_Select_end").hide();
+                    $("#week_version").hide();
+                    $("#week_version_date").hide();
+                    $("#month_version_date").hide();
+                    $("#month_Select").show();
+                    $("#month_label").show();
+                    $("#month_version").show();
+                    $("#time_Select_Start").hide();
+                    $("#time_Select_End").hide();
+                    $("#time_version").hide();
+                    var myDate = new Date();
+                    var startDay = getCurrentMonthFirst(myDate);
+                    var endDay = getCurrentMonthLast(myDate);
+                    var currentDay = myDate.getFullYear() + "-" + (myDate.getMonth()+ 1) + "-" + myDate.getDate();
+                    var myDateStart = startDay.getFullYear() + "-" +(startDay.getMonth()+ 1) + "-" + startDay.getDate();
+                    var myDateEnd = endDay.getFullYear() + "-" + (endDay.getMonth() + 1) + "-" + endDay.getDate();
+
+                    $('#Interval_Date_Start').val(myDateStart);
+                    $('#Interval_Date_End').val(myDateEnd);
+                    $('#js_s_begin_date_month').val(currentDay);
+                    $("#js_s_input_mounth_interval").val("从： " + myDateStart + "  到：" + myDateEnd);
+                    GetVersion("js_s_input_month_verion", myDateStart, myDateEnd);
+                    $("#interval_week_date").text($("#js_s_input_mounth_interval").val());
+                }
+                if ($("#js_s_select_type").val() == "time")  //选择的类型为时间段报表
+                {
+                    if ($("#js_ppcheckdata_week_wrapper").length >0) {
+                        $("#js_ppcheckdata_week_wrapper").hide();
+                    }
+                    if ($("#js_ppcheckdata_datatable_wrapper").length > 0) {
+                        $("#js_ppcheckdata_datatable_wrapper").hide();
+                    }
+
+                    $("#week_label_th").show();
+                    $("#day_label_th").hide();
+
+                    $("#js_ppcheckdata_week").hide();
+                    $("#js_ppcheckdata_datatable").hide();
+                    $("#js_ppcheckdata_mounth").show();
+                    $("#day_time_select").hide();
+                    $("#day_Select").hide();
+                    $("#week_Select_start").hide();
+                    $("#week_Select_end").hide();
+                    $("#week_version").hide();
+                    $("#week_version_date").hide();
+                    $("#month_version_date").hide();
+                    $("#month_Select").hide();
+                    $("#month_label").hide();
+                    $("#month_version").hide();
+                    $("#time_Select_Start").show();
+                    $("#time_Select_End").show();
+                    $("#time_version").show();
+                    if ($('#Interval_Date_Start').val() != "" && $('#Interval_Date_End').val() != "") {
+                        GetVersion("js_s_verion_interval", $('#Interval_Date_Start').val(), $('#Interval_Date_End').val());
+
+                    }
+                }
+            });
+
+            //查询版本日期时间段
+            function getVersionInterval(type) {
+                var startDay;
+                var endDay;
+
+                if (type == "monthly")
+                {
+                    var myDate = new Date();
+                    myDateStart = getCurrentMonthFirst(myDate);
+                    myDateEnd = getCurrentMonthLast(myDate);
+
+                    startDay = myDateStart.getFullYear() + "-" + (myDateStart.getMonth() + 1) + "-" + myDateStart.getDate();
+                    endDay = myDateEnd.getFullYear() + "-" + (myDateEnd.getMonth() + 1) + "-" + myDateEnd.getDate();
+                }
+                else
+                {
+                    startDay = $("#Interval_Date_Start").val().substring(0,10);
+                    endDay = $("#Interval_Date_End").val();
+                }
+                var customer = $("#js_s_input_customer").val();
+                var ProjectName = $("#js_s_input_project").val();
+                var ProductPhaseName = $("#js_s_input_product_phase").val();
+                var PartTypesName = $("#js_s_input_part_types").val();
+                var Version = $("#js_s_input_month_verion").val();
+                $.post(ppCheckDataUrls.QueryVersionInterval, { "CustomerName": customer, "ProjectName": ProjectName, "ProductPhaseName": ProductPhaseName, "PartTypesName": PartTypesName, "Version": Version,"startDay":startDay, "endDay":endDay }, function (data) {
+
+                    $("#interval_week_date").text(data.Interval);
+                    formatDate($("#Interval_Date_Start").val(data.VersionBeginDate));
+                    formatDate($("#Interval_Date_End").val(data.VersionEndDate));
+                });
+               }
+
+            //月报版本选择变化时候
+            $("#js_s_input_month_verion").bind('change', function () {
+                var customer = $("#js_s_input_customer").val();
+                var ProjectName = $("#js_s_input_project").val();
+                var ProductPhaseName = $("#js_s_input_product_phase").val();
+                var PartTypesName = $("#js_s_input_part_types").val();
+                var Version = $("#js_s_input_month_verion").val();
+                $.post(ppCheckDataUrls.QueryVersionInterval, { "CustomerName": customer, "ProjectName": ProjectName, "ProductPhaseName": ProductPhaseName, "PartTypesName": PartTypesName, "Version": Version }, function (data) {
+                    $("#js_s_input_month_verion_date").val(data.Interval);
+                    $("#interval_week_date").text(data.Interval);
+                    formatDate($("#Interval_Date_Start").val(data.VersionBeginDate));
+                    formatDate($("#Interval_Date_End").val(data.VersionEndDate));
+                });
+            });
+            //周报日期选择变化时候
+            $("#js_s_input_weekdate_start").change(function () {
+                var myDate = $("#js_s_input_weekdate_start").val();
+                //获取时间段
+                GetIntervel(myDate);
+                GetweekVersion("js_s_input_week_verion", myDate);
+                $("#interval_week_date").text($("#js_s_input_week_interval").val());
+            });
+            // 月报日期变化时候执行
+            $("#js_s_begin_date_month").change(function () {
+                var myDate = new Date($("#js_s_begin_date_month").val());
+                var startDay = getCurrentMonthFirst(myDate);
+                var endDay = getCurrentMonthLast(myDate);
+                var currentDay = formatDate(myDate);
+                var myDateStart =formatDate(startDay);
+                var myDateEnd = formatDate(endDay);
+                $('#js_s_begin_date_month').val(currentDay);
+                $('#Interval_Date_Start').val(myDateStart);
+                $('#Interval_Date_End').val(myDateEnd);
+                $("#js_s_input_mounth_interval").val("从： " + myDateStart + "  到：" + myDateEnd);
+                GetVersion("js_s_input_month_verion", myDateStart, myDateEnd);
+                $("#interval_week_date").text($("#js_s_input_mounth_interval").val());
+            });
+
+
+            /// 时间段版本发生更改时
+            $("#js_s_input_month_verion").change(function () {
+                $("#js_s_verion_interval option:selected").text($("#js_s_input_month_verion option:selected").text());
+            });
+            $("#js_s_verion_interval").bind('change', function () {
+                var customer = $("#js_s_input_customer").val();
+                var ProjectName = $("#js_s_input_project").val();
+                var ProductPhaseName = $("#js_s_input_product_phase").val();
+                var PartTypesName = $("#js_s_input_part_types").val();
+                var Version = $("#js_s_verion_interval").val();
+                $.post(ppCheckDataUrls.QueryVersionInterval, { "CustomerName": customer, "ProjectName": ProjectName, "ProductPhaseName": ProductPhaseName, "PartTypesName": PartTypesName, "Version": Version }, function (data) {
+                    //$("#js_s_input_month_verion_date").val(data.Interval);
+                    $("#interval_week_date").text(data.Interval);
+                    formatDate($("#Interval_Date_Start").val(data.VersionBeginDate));
+                    formatDate($("#Interval_Date_End").val(data.VersionEndDate));
+                });
+            });
+            //比较日期大小
+            function validTime(startTime, endTime) {
+                var arr1 = startTime.split("-");
+                var arr2 = endTime.split("-");
+                var date1 = new Date(parseInt(arr1[0]), parseInt(arr1[1]) - 1, parseInt(arr1[2]), 0, 0, 0);
+                var date2 = new Date(parseInt(arr2[0]), parseInt(arr2[1]) - 1, parseInt(arr2[2]), 0, 0, 0);
+                if (date1.getTime() > date2.getTime()) {
+                    alert('结束日期不能小于开始日期', this);
+
+                    $("#Interval_Date_End").val("");
+                    return false;
+                } else {
+                    return true;
+                }
+                return false;
+            }
+            // 时间段中日期发生变化
+            $("#Interval_Date_End").change( function () {
+                var startDate = $("#Interval_Date_Start").val();
+                var endDate = $("#Interval_Date_End").val();
+                if (startDate == null || endDate == null)
+                {
+                    alert("开始日期或者结束日期不能为空。")
+                    return;
+                }
+                validTime(startDate, endDate);
+                GetVersion("js_s_verion_interval", startDate, endDate);
+                var interval_time = "从：" + startDate + " 到" + endDate;
+                $("#interval_week_date").text(interval_time);
+            });
+
+            function GetIntervel(myDate) {
+                $.post(ppCheckDataUrls.GetDateTime, { "mydate": myDate }, function (data) {
+                    $("#js_s_input_week_interval").val(data);
+                });
+            };
+
+            /* 获取当前月的第一天*/
+            function getCurrentMonthFirst(date) {
+
+                date.setDate(1);
+                return date;
+            }
+            /* 获取当前月的最后一天*/
+            function getCurrentMonthLast(date) {
+
+                var currentMonth = date.getMonth();
+                var nextMonth = ++currentMonth;
+                var nextMonthFirstDay = new Date(date.getFullYear(), nextMonth, 1);
+                var oneDay = 1000 * 60 * 60 * 24;
+                return new Date(nextMonthFirstDay - oneDay);
+            }
+            //获取数据
+            function GetCustomer() {
+                $("#js_s_input_customer").empty();
+                $.post(ppCheckDataUrls.GetCustomerSource, function (data) {
+                    if (data != "") {
+                        $.each(data, function (i, item) {
+                            $("<option></option>")
+                                .val(item)
+                                .text(item)
+                                .appendTo($("#js_s_input_customer"));
+                        });
+                        GetProject();
+                    }
+                });
+            }
+
+            function GetProject() {
+                $("#js_s_input_project").empty();
+                var temp = $("#js_s_input_customer").val();
+                $.post(ppCheckDataUrls.GetProjectSource, { "CustomerName": temp }, function (data) {
+                    if (data != "") {
+                        $.each(data, function (i, item) {
+                            $("<option></option>")
+                                .val(item)
+                                .text(item)
+                                .appendTo($("#js_s_input_project"));
+                        });
+                        GetProductPhase();
+                    }
+                });
+            }
+
+            function GetProductPhase() {
+                $("#js_s_input_product_phase").empty();
+                var tempCustomer = $("#js_s_input_customer").val();
+                var tempProject = $("#js_s_input_project").val();
+                $.post(ppCheckDataUrls.GetProductPhaseSource, { "CustomerName": tempCustomer, "ProjectName": tempProject }, function (data) {
+                    if (data != "") {
+                        $.each(data, function (i, item) {
+
+                            $("<option></option>")
+                                .val(item)
+                                .text(item)
+                                .appendTo($("#js_s_input_product_phase"));
+                        });
+                        GetPartTypes();
+                    }
+                });
+            }
+
+            function GetPartTypes() {
+                $("#js_s_input_part_types").empty();
+                var tempCustomer = $("#js_s_input_customer").val();
+                var tempProject = $("#js_s_input_project").val();
+                var tempPhaseName = $("#js_s_input_product_phase").val();
+                $.post(ppCheckDataUrls.GetPartTypesSource, { "CustomerName": tempCustomer, "ProjectName": tempProject, "ProductPhaseName": tempPhaseName }, function (data) {
+                    if (data != "") {
+                        $.each(data, function (i, item) {
+
+                            $("<option></option>")
+                                .val(item)
+                                .text(item)
+                                .appendTo($("#js_s_input_part_types"));
+                        });
+                        GetColor();
+                    }
+                });
+            }
+            ///获取版本号
+            function GetVersion(version, beginTime, endTime) {
+                $("#" + version).empty();
+
+                var tempCustomer = $("#js_s_input_customer").val();
+                var tempProject = $("#js_s_input_project").val();
+                var tempPhaseName = $("#js_s_input_product_phase").val();
+                var tempPartTypes = $("#js_s_input_part_types").val();
+                var startDay;
+                var endDay;
+                $.post(ppCheckDataUrls.GetVersionSource, { "CustomerName": tempCustomer, "ProjectName": tempProject, "ProductPhaseName": tempPhaseName, "PartTypesName": tempPartTypes, "beginTime": beginTime, "endTime": endTime }, function (data) {
+                    if (data != "") {
+                        $.each(data, function (i, item) {
+
+                            $("<option></option>")
+                                .val(item)
+                                .text(item)
+                                .appendTo($("#" + version));
+                        });
+                        var customer = $("#js_s_input_customer").val();
+                        var ProjectName = $("#js_s_input_project").val();
+                        var ProductPhaseName = $("#js_s_input_product_phase").val();
+                        var PartTypesName = $("#js_s_input_part_types").val();
+                        var Version = $("#" + version).val();
+                        $.post(ppCheckDataUrls.QueryVersionInterval, { "CustomerName": customer, "ProjectName": ProjectName, "ProductPhaseName": ProductPhaseName, "PartTypesName": PartTypesName, "Version": Version, "startDay": beginTime, "endDay": endTime }, function (data) {
+
+                            $("#interval_week_date").text(data.Interval);
+                            formatDate($("#Interval_Date_Start").val(data.VersionBeginDate));
+                            formatDate($("#Interval_Date_End").val(data.VersionEndDate));
+                        });
+                    }
+                });
+            }
+            function GetweekVersion(version, myDate) {
+                $("#" + version).empty();
+
+                var tempCustomer = $("#js_s_input_customer").val();
+                var tempProject = $("#js_s_input_project").val();
+                var tempPhaseName = $("#js_s_input_product_phase").val();
+                var tempPartTypes = $("#js_s_input_part_types").val();
+                var startDay;
+                var endDay;
+                $.post(ppCheckDataUrls.GetWeekVersionSource, { "CustomerName": tempCustomer, "ProjectName": tempProject, "ProductPhaseName": tempPhaseName, "PartTypesName": tempPartTypes, "myDate": myDate }, function (data) {
+                    if (data != "") {
+                        $.each(data, function (i, item) {
+
+                            $("<option></option>")
+                                .val(item)
+                                .text(item)
+                                .appendTo($("#" + version));
+                        });
+                    }
+                });
+            }
+            function GetColor() {
+                $("#js_s_input_color").empty();
+                var tempCustomer = $("#js_s_input_customer").val();
+                var tempProject = $("#js_s_input_project").val();
+                var tempPhaseName = $("#js_s_input_product_phase").val();
+                var tempPartTypes = $("#js_s_input_part_types").val();
+                $.post(ppCheckDataUrls.GetColorSource, { "CustomerName": tempCustomer, "ProjectName": tempProject, "ProductPhaseName": tempPhaseName, "PartTypesName": tempPartTypes }, function (data) {
+                    if (data != "") {
+                        $.each(data, function (i, item) {
+
+                            $("<option></option>")
+                                .val(item)
+                                .text(item)
+                                .appendTo($("#js_s_input_color"));
+                        });
+                    }
+                });
+            }
+            function GetInterval() {
+                $("#js_s_input_interval_time").empty();
+                $.post(ppCheckDataUrls.GetIntervalTime, { "PageName": "ProductReport" }, function (data) {
+                    if (data != "") {
+                        $.each(data, function (i, item) {
+                            $('<option></option>').val(item["Enum_Value"]).text(item["Enum_Value"]).appendTo($("#js_s_input_interval_time"));
+                        });
+                    } else {
+                        SPP.Utility.MessageBox.error(data);
+                    }
+                });
+            }
+
+            //#endregion
+            function CreateTab() {
+                $("#myTab li").remove();
+                $("#js_s_input_interval_time option").each(function (index) {
+                    if (this.selected == true) {
+                        var tabText = $(this).text();
+                        $("#myTab").append('<li ><a href="#AllDay" data-toggle="tab">' + tabText + '</a></li>');
+                    }
+                });
+            }
+
+            //不同的生产阶段用红色分隔线区分开
+            function productStageLine() {
+                var dataTable = PPCheckData.GetPPCheckDatatable();
+                var productStage = 2;
+                dataTable
+                    .rows()
+                    .every(function (rowIdx, tableLoop, rowLoop) {
+                        var row = $('#js_ppcheckdata_datatable>tbody>tr').eq(rowIdx);
+                        if (row.data('Product_Stage') == productStage) {
+                            row.attr("style", "border-top: 3px solid red");
+                            productStage++;
+                        }
+                    });
+            }
+            //查询条件
+            $('#btn-search').click(function () {
+                //选择日报表时的逻辑
+                if ($("#js_s_select_type").val() == "daily") {
+                    $("#btn_export").show();
+                    $("#myTab").show();
+                    PPCheckData.Init();
+                    //查询时间大于7天则弹出缓慢提醒
+                    var t = new Date();
+                    var nowDay = t.getDate();
+                    var searchDay = new Date($("#js_s_input_date").val()).getDate();
+                    var iDays = nowDay - searchDay;
+                    if (iDays >= 7) {
+                        $('#btn-search').popover('show');
+                        //$('#js_delay_text').attr("style", "display:true;");
+                    }
+                    //检查必须填写的值是否为空
+                    if ($("#js_s_input_customer").val() == null || $("#js_s_input_project").val() == null
+                        || $("#js_s_input_product_phase").val() == null || $("#js_s_input_part_types").val() == null ||
+                        $("#js_s_input_date").val() == "" || $("#js_s_input_interval_time").val() == null) {
+
+                        SPP.Utility.MessageBox.error("客户、专案、阶段、部件类型，日期，时段不能为空！");
+                        return;
+                    }
+                    CreateTab();
+                    //Criteria.Build放置到到这里，首次加载页面不处理Criteria
+                    SPP.Utility.Criteria.Build();
+                    $('#js_search_modal').modal('hide');
+                    //点击Tab查询值
+                    $('#myTab a').click(function (e) {
+                        //为日期、时段赋值
+                        var mydate = new Date();
+                        var str = $("#js_s_input_date").val();
+                        var activeTab = $(e.target).text();
+                        $("#js_datetime").text(str);
+                        $("#js_time_interval").text(activeTab);
+                        $("#js_tab_select_text").val(activeTab);
+                        if ($("#js_form_query").valid()) {
+                            PPCheckData.QueryPPCheckDatas();
+                            productStageLine();
+                        }
+                    });
+                    //#region 默认第一个页签被选中
+                    $('#myTab a:first').tab('show');
+                    var mydate = new Date();
+                    var str = $("#js_s_input_date").val();
+                    var activeTab = $('#myTab a:first').text();
+                    $("#js_datetime").text(str);
+                    $("#js_time_interval").text(activeTab);
+                    $("#js_tab_select_text").val(activeTab);
+                    if ($("#js_form_query").valid()) {
+                        PPCheckData.QueryPPCheckDatas();
+                        productStageLine();
+                    }
+                    //#endregion
+                }
+
+
+                else if ($("#js_s_select_type").val() == "weekly") {
+                    var banBen = $("#js_s_input_week_verion").val();
+                    if (banBen == "" || banBen==null)
+                    {
+                        alert("请先选择版本号。");
+                        return;
+                    }
+                    $("#interval_week_date").text($("#js_s_input_week_interval").val());
+
+                    //$("#btn_export").hide()
+                    $("#myTab").hide();
+                    WeekData.Init();
+                    SPP.Utility.Criteria.Build();
+                    $('#js_search_modal').modal('hide');
+                    if ($("#js_form_query").valid()) {
+                        WeekData.QueryWeekData();
+                       
+                    }
+                    
+                }
+
+
+                else if ($("#js_s_select_type").val() == "monthly" || $("#js_s_select_type").val() == "time") {
+                    if ($("#js_s_select_type").val() == "monthly")
+                    {
+                        
+                        var banBen = $("#js_s_input_month_verion").val();
+                        if (banBen == "" || banBen == null) {
+                            alert("请先选择版本号。");
+                            return;
+                        }
+                        $("#Verion_Interval").val($("#js_s_input_month_verion option:selected").text());
+                        //给时间段赋值
+                        getVersionInterval("monthly");
+                    }
+                    else
+                    {
+                        var banBen = $("#js_s_verion_interval").val();
+                        if (banBen == "" || banBen == null) {
+                            alert("请先选择版本号。");
+                            return;
+                        }
+                        $("#Verion_Interval").val($("#js_s_verion_interval option:selected").text());
+                        //给时间段赋值
+                        getVersionInterval("time");
+                    }
+
+
+                    //$("#btn_export").hide()
+                    $("#myTab").hide();
+                    MounthData.Init();
+                    SPP.Utility.Criteria.Build();
+                    $('#js_search_modal').modal('hide');
+
+                    if ($("#js_form_query").valid()) {
+                        MounthData.QueryMounthData();
+
+                    }
+                }
+            });
+            //清空选择条件
+            $('#js_search_modal').on('click', '.btn-clear', function () {
+                //如果没有特殊项的Clear，直接调用Clear方法
+                var $searchform = $('#js_form_query');
+                $searchform.find("select").each(function () {
+                    $(this).find("option").attr("selected", false);
+                    $(this).find("option").first().attr("selected", true);
+                }
+                );
+                SPP.Utility.Criteria.Clear();
+            });
+            //将后台传过来的datetime格式转换为date类型
+            var formatDate = function (date) {
+                var y = date.getFullYear();
+                var m = date.getMonth() + 1;
+                m = m < 10 ? '0' + m : m;
+                var d = date.getDate();
+                d = d < 10 ? ('0' + d) : d;
+                return y + '-' + m + '-' + d;
+            };
+
+            //导出按钮
+            $('#btn_export').click(function () {
+                var $selectList = $('#js_ppcheckdata_datatable').find('.js-checkbox-item:checked');
+                var exportValue = $('#js_form_query').serializeObject();
+                if ($("#js_s_select_type").val() == "daily") {
+                    var tabList = [];
+                    $('#myTab a').each(function () {
+                        var tab = {};
+                        tab["Time_InterVal"] = $(this).text();
+                        tabList.push(tab);
+                    });
+                    exportValue.TabList = tabList;
+
+                    //var url = ppCheckDataUrls.DoExportPPCheckData;
+                    //url += "?jsonExportList=" + JSON.stringify(exportValue);
+                    //window.location.href = url;
+
+                    $.post(ppCheckDataUrls.DoExportPPCheckData, { jsonExportList: JSON.stringify(exportValue), submitType: "AJAX", exportName: "Report" }, function (data) {
+                        if (data == "SUCCESS") {
+                            var url = ppCheckDataUrls.DoExportPPCheckData;
+                            url += "?jsonExportList=" + JSON.stringify(exportValue) + "&exportName=" + "Report";
+                            window.location.href = url;
+                        } else {
+                            SPP.Utility.MessageBox.error(data);
+                        }
+
+                    });
+                   
+                }
+                else if ($("#js_s_select_type").val() == "weekly") {
+                   
+                    $.post(ppCheckDataUrls.DoExportWeeklyData, { jsonExportList: JSON.stringify(exportValue), submitType: "AJAX", exportName: "Report" }, function (data) {
+                        if (data == "SUCCESS") {
+                            var url = ppCheckDataUrls.DoExportWeeklyData;
+                            url += "?jsonExportList=" + JSON.stringify(exportValue) + "&exportName=" + "Report";
+                            window.location.href = url;
+                        } else {
+                            SPP.Utility.MessageBox.error(data);
+                        }
+
+                    });
+                }
+                else if ($("#js_s_select_type").val() == "monthly" || $("#js_s_select_type").val() == "time") {
+                    $.post(ppCheckDataUrls.DoExportIntervalData, { jsonExportList: JSON.stringify(exportValue), submitType: "AJAX", exportName: "Report" }, function (data) {
+                        if (data == "SUCCESS") {
+                            var url = ppCheckDataUrls.DoExportIntervalData;
+                            url += "?jsonExportList=" + JSON.stringify(exportValue) + "&exportName=" + "Report";
+                            window.location.href = url;
+                        } else {
+                            SPP.Utility.MessageBox.error(data);
+                        }
+
+                    });
+                }
+            });
+        });
+    </script>
+}

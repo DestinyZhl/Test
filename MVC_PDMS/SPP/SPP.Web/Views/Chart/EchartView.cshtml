@@ -1,0 +1,184 @@
+﻿
+@{
+    ViewBag.Title = "EchartView";
+}
+
+<section class="content-header portal-content-header">
+    <h1>
+        EchartView
+        <small></small>
+    </h1>
+</section>
+<section class="content portal-content">
+    <div class="row">
+        <div class="col-md-12 col-lg-9">
+            <h4 class="margin-td-5" id="js_search_keywords"></h4>
+        </div>
+        <div class="col-md-12 search-field col-lg-3">
+            <a class="btn btn-default btn-lg" data-toggle="modal" data-target="#js_search_modal" id="btn-search"><i class="fa fa-search"></i>查询</a>
+        </div>>
+    </div>
+
+</section>
+<div id="main" style="width: 800px;height:600px;"></div>
+
+<div class="modal fade" id="js_search_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title">查询</h2>
+            </div>
+            <div class="modal-body form-horizontal">
+                <div class="row">
+                    <form id="js_form_query" data-need-validate="true">
+
+                        <div class="form-group">
+
+                            <label class="col-xs-3 control-label" for="js_input_func_plant">所属功能厂</label>
+                            <div class="col-xs-3">
+                                <input input="input" class="form-control input-xs" value="@ViewBag.Func_Plant" id="js_input_func_plant" name="Func_Plant"
+                                       data-rule-maxlength="50" data-msg-maxlength="Please enter no more than {0} characters in Function Description.">
+                            </div>
+                            <label class="col-xs-2 control-label" for="js_s_select_flowchart_name">流程名</label>
+
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="col-xs-3 control-label" for="js_s_input_plant_customer">客户</label>
+                            <div class="col-xs-3">
+                                <input type="text" name="Customer" class="form-control input-xs" id="js_s_input_plant_customer">
+                            </div>
+
+
+                            <label class="col-xs-2 control-label" for="js_s_input_project">专案</label>
+                            <div class="col-xs-3">
+
+                                <input type="text" name="Project" class="form-control input-xs" id="js_s_input_project">
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+
+                            <label class="col-xs-3 control-label" for="js_s_input_part_types">部件</label>
+                            <div class="col-xs-3">
+                                <input type="text" name="Part_Types" class="form-control input-xs" id="js_s_input_part_types">
+                            </div>
+                            <label class="col-xs-2 control-label" for="js_s_input_Product_Phase">生产阶段</label>
+                            <div class="col-xs-3">
+
+                                <input type="text" name="Product_Phase" class="form-control input-xs" id="js_s_input_Product_Phase">
+
+                            </div>
+
+                        </div>
+                        <div class="form-group" style="padding-top:10px;">
+
+                            <label class="col-xs-3 control-label" for="js_s_input_reference_date">日期选择</label>
+                            <div class="col-xs-3">
+                                <input type="text" name="Date" class="form-control input-xs date" id="js_s_input_reference_date">
+                            </div>
+                            <label class="col-xs-2 control-label" for="js_s_select_time">时段选择</label>
+                            <div class="col-xs-3">
+                                <input type="text" name="Time" class="form-control input-xs" id="js_s_select_time">
+
+                            </div>
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button id="btn-search-inner" type="button" class="btn btn-primary btn-query">Query</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section ViewModals{
+    <script src="~/Scripts/ECharts/echarts.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            $('#btn-search-inner').click(function () {
+
+                var myChart = echarts.init(document.getElementById('main'));
+
+                myChart.showLoading();
+                myChart.hideLoading();
+
+                var option = {
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎']
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            dataZoom: {},
+                            dataView: { readOnly: false },
+                            magicType: { type: ['line', 'bar'] },
+                            restore: {},
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: [
+                        {
+                            type: 'category',
+                            boundaryGap: false,
+                            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                        }
+                    ],
+                    yAxis: [
+                        {
+                            type: 'value'
+                        }
+                    ],
+                    series: [
+                        {
+                            name: '邮件营销',
+                            type: 'line',
+                            stack: '总量',
+                            data: [120, 132, 101, 134, 90, 230, 210]
+                        },
+                        {
+                            name: '联盟广告',
+                            type: 'line',
+                            stack: '总量',
+                            data: [220, 182, 191, 234, 290, 330, 310]
+                        },
+                        {
+                            name: '视频广告',
+                            type: 'line',
+                            stack: '总量',
+                            data: [150, 232, 201, 154, 190, 330, 410]
+                        },
+                        {
+                            name: '直接访问',
+                            type: 'line',
+                            stack: '总量',
+                            data: [320, 332, 301, 334, 390, 330, 320]
+                        },
+                        {
+                            name: '搜索引擎',
+                            type: 'line',
+                            stack: '总量',
+                            data: [820, 932, 901, 934, 1290, 1330, 1320]
+                        }
+                    ]
+                }
+
+                    myChart.setOption(option);
+                
+              
+            });
+        });
+
+
+    </script>
+}

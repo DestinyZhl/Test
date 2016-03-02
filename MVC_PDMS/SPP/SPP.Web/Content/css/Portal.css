@@ -1,0 +1,476 @@
+﻿@charset "utf-8";
+/*jabile:#005288
+GP:#00764B
+Nypro:#E35929*/
+/* ==LOGO== */
+.login-logo-logoimg {
+    height: 68px;
+    width: auto;
+}
+.logo-mini-logoimg {
+    height: 30px;
+    width: auto;
+    vertical-align: top;
+    margin-top: 10px;
+}
+
+.logo-lg-logoimg {
+    height: 36px;
+    width: auto;
+    vertical-align: top;
+    margin-top: 7px;
+}
+/* ==大頭貼調整== */
+.navbar-nav > .user-menu .user-image {
+	width: 20px;
+    height: 20px
+	}
+.user-menu .dropdown-toggle {
+	padding-left:10px;
+	padding-right:10px
+	}
+/* ==sidebar-menu== */
+/*次menu斷行*/
+.treeview-menu {
+    padding-left: 0px !important;
+    padding-top: 0px !important;
+}
+.treeview-menu li {
+	white-space: pre-wrap;
+	word-wrap: break-word;
+	/*border-bottom:1px solid #36484E;*/
+}
+/*第二層標題*/
+.li-menu-header {
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 13px;
+}
+
+    .li-menu-header::before {
+        content: " ❚ ";
+        color: #00764B;
+        padding-right: 2px;
+    }
+/*======header的my-task======*/
+.my-task {
+    padding: 15px;
+    border-bottom: 1px solid #F4F4F4;
+    height: auto;
+}
+/*======.table表格======*/
+.table thead th {
+    background: #546A74; /*#3c8dbc*/
+    color: #FFF;
+    vertical-align: middle !important;
+}
+.table tbody th {
+    background: #D6DDE1;
+    color: inherit;
+}
+.table tfoot th {
+    background: #546A74;
+    color: #FFF;
+    vertical-align: middle !important;
+}
+/*======form 表單 input lab======*/
+.form-horizontal-custom .form-group {
+    margin-top: 5px;
+    margin-bottom: 5px;
+	}
+.form-horizontal-custom .form-group [class*="col-"] {
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+    }
+/*input 說明字' icon減少padding*/
+.input-group-addon {
+    padding: 6px 6px;
+	}
+/* form 表單 input使用/ */
+form label.no-padding-l {
+	padding-left:0  !important;
+	}
+form label.no-padding-vr {
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+	}
+form label.no-padding-hr {
+    padding-left: 0  !important;
+    padding-right: 0 !important;
+}
+/*======modal======*/
+.modal-custom .modal-header,.modal-custom .modal-body,.modal-custom .modal-footer {
+    padding: 10px;
+}
+/*======box 全部垂直罝中, 要全部各自加這個css======*/
+.pull-middle {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+/*======margin & padding 空格======*/
+.no-padding-l {
+    padding-left:0 ;
+}
+.no-padding-r {
+    padding-left: 0;
+}
+.no-padding-hr {
+    padding-left: 0;
+    padding-right: 0;
+}
+.no-padding-vr {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.padding-lr-5 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.padding-lr-10 {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.padding-lr-15 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.padding-l-5 {
+    padding-left: 5px;
+}
+.padding-r-5 {
+    padding-right: 5px;
+}
+.padding-r-10 {
+    padding-right: 10px;
+}
+.padding-tb-5 {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.padding-tb-10 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.padding-t-10 {
+    padding-top: 10px;
+}
+/*時區調整高度用*/
+.padding-t-7 {
+    padding-top: 7px;
+}
+.padding-b-10 {
+    padding-bottom: 10px;
+}
+.padding-all-2 {
+    padding: 2px;
+}
+.padding-all-5 {
+    padding: 5px;
+}
+.padding-all-10 {
+    padding: 10px;
+}
+.padding-all-15 {
+    padding: 15px;
+}
+.margin-tb-5 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.margin-t-5 {
+    margin-top: 5px;
+}
+.margin-b-5 {
+    margin-bottom: 5px;
+}
+.margin-t-10 {
+    margin-top: 10px;
+}
+.margin-t-20 {
+    margin-top: 20px;
+}
+.margin-tb-10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+/*======其他元件======*/
+.hr-custom {
+    margin: 5px 0px 5px 0px;
+	}
+.label-new {
+    padding: .1em .2em .2em;
+    border-radius: .2em;
+	}
+.coming-soon {
+    padding: 30px 0px;
+	}
+.coming-soon img {
+	max-width: 300px;
+	width: 60%;
+	height: auto;
+	}
+/*======Title 標題======*/
+.title-sub {
+    padding:0px 10px;
+	margin-top:5px;
+	margin-bottom:5px;
+	border-left:5px #00764B solid
+}
+.title-third {
+	padding:0px 10px;
+	margin-top:5px;
+	border-left:5px #005288 solid
+	}	
+.blockquote-title {
+	padding:0px 10px;
+	border-color:#00764B
+	}
+.blockquote-title h4 {
+	margin:5px 0px;
+	}
+.blockquote-title p {
+	color:#999
+	}
+/*======Text 與 line height 與 顏色======*/
+.line-height-1em {
+    line-height: 1em;
+}
+.text-jb {
+    color: #005288;
+}
+.text-gp {
+    color: #00764B;
+}
+.text-nypro {
+    color: #E35929;
+}
+.text-info02 {
+    color: #d9edf7;
+}
+.text-success02 {
+    color: #dff0d8;
+}
+.text-size-9 {
+    font-size: 9px;
+}
+.bg-jb {
+    background: #005288;
+}
+.bg-gp {
+    background: #00764B;
+}
+.bg-nypro {
+    background: #E35929;
+}
+/*======top search======*/
+.search-keyword {
+    margin-left: 5px;
+    padding-left: 5px;
+    border-left: 1px solid #eeeeee;
+}
+/*======iframe  ======*/
+.iframe-body {
+    padding: 0px 26px 0px 10px;
+    margin: 0px;
+}
+/*====== bootstrap column same height 可置底、中、上，用於ROW ======*/
+.inside-full-height {
+    /*
+  // if you want to give content full height give him height: 100%;
+  // with content full height you can't apply margins to the content
+  // content full height does not work in ie http://stackoverflow.com/questions/27384433/ie-display-table-cell-child-ignores-height-100
+  */
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* columns of same height styles */
+
+.row-height {
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+.col-height {
+    display: table-cell;
+    float: none;
+    height: 100%;
+}
+
+.col-top {
+    vertical-align: top;
+}
+
+.col-middle {
+    vertical-align: middle;
+}
+
+.col-bottom {
+    vertical-align: bottom;
+}
+
+/*(min-width: 480px)*/
+@media (min-width: 480px) {
+    .row-xs-height {
+        display: table;
+        table-layout: fixed;
+        height: 100%;
+        width: 100%;
+    }
+
+    .col-xs-height {
+        display: table-cell;
+        float: none;
+        height: 100%;
+    }
+
+    .col-xs-top {
+        vertical-align: top;
+    }
+
+    .col-xs-middle {
+        vertical-align: middle;
+    }
+
+    .col-xs-bottom {
+        vertical-align: bottom;
+    }
+}
+/*(min-width: 768px)*/
+@media (min-width: 768px) {
+    .row-sm-height {
+        display: table;
+        table-layout: fixed;
+        height: 100%;
+        width: 100%;
+    }
+
+    .col-sm-height {
+        display: table-cell;
+        float: none;
+        height: 100%;
+    }
+
+    .col-sm-top {
+        vertical-align: top;
+    }
+
+    .col-sm-middle {
+        vertical-align: middle;
+    }
+
+    .col-sm-bottom {
+        vertical-align: bottom;
+    }
+}
+/*(min-width: 992px)992*/
+@media (min-width: 992px) {
+    .row-md-height {
+        display: table;
+        table-layout: fixed;
+        height: 100%;
+        width: 100%;
+    }
+
+    .col-md-height {
+        display: table-cell;
+        float: none;
+        height: 100%;
+    }
+
+    .col-md-top {
+        vertical-align: top;
+    }
+
+    .col-md-middle {
+        vertical-align: middle;
+    }
+
+    .col-md-bottom {
+        vertical-align: bottom;
+    }
+}
+/*min-width: 1200px*/
+@media (min-width: 1200px) {
+    .row-lg-height {
+        display: table;
+        table-layout: fixed;
+        height: 100%;
+        width: 100%;
+    }
+
+    .col-lg-height {
+        display: table-cell;
+        float: none;
+        height: 100%;
+    }
+
+    .col-lg-top {
+        vertical-align: top;
+    }
+
+    .col-lg-middle {
+        vertical-align: middle;
+    }
+
+    .col-lg-bottom {
+        vertical-align: bottom;
+    }
+}
+
+/*====== col 水平置中，靠右，審核單的submit等按鈕專用======*/
+.row-centered {
+	text-align:center;
+	}/*button的上一層的div*/
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align: center;
+    /* inline-block space fix */
+    margin-right:-4px;
+	}/*button的div*/
+.row-right {
+	text-align: right;
+	}/*button的上一層的div*/
+.col-right {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align: center;
+    /* inline-block space fix */
+    margin-right:-4px;
+	}/*button的div*/	
+/*======popover  ======*/
+.popover {
+    max-width: 500px;
+}
+
+.popover-content .btn + .btn {
+    margin-left: 2px;
+}
+
+/*=========== modal ==========*/
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    max-height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* ===== Form ============ */
+.form-group{
+    margin-bottom: 10px;
+}
+.search-radio-cnt {
+    min-height: 30px;    
+}

@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPP.Web", "SPP.Web\SPP.Web.csproj", "{98369D5B-836B-4EE8-810E-1DF6D66F8E70}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPP.Common", "SPP.Common\SPP.Common.csproj", "{09B6A6AB-8DC7-4D94-8EE4-248360AC54B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPP.Data", "SPP.Data\SPP.Data.csproj", "{D640CF57-9E8B-4DED-8E57-5333B14E05B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPP.Model", "SPP.Model\SPP.Model.csproj", "{1BEE001D-DDEB-47FC-A64C-4D65D83F3774}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPP.Service", "SPP.Service\SPP.Service.csproj", "{8241F397-D5A6-41DA-937D-CDEC0EFA6E85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPP.WebAPI", "SPP.WebAPI\SPP.WebAPI.csproj", "{BCEA63CD-9FA9-46D6-97F8-E9C70D995778}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPP.Core", "SPP.Core\SPP.Core.csproj", "{210E62F8-FE07-4F9E-95F2-672D3B96A76C}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{98369D5B-836B-4EE8-810E-1DF6D66F8E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98369D5B-836B-4EE8-810E-1DF6D66F8E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98369D5B-836B-4EE8-810E-1DF6D66F8E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98369D5B-836B-4EE8-810E-1DF6D66F8E70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09B6A6AB-8DC7-4D94-8EE4-248360AC54B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09B6A6AB-8DC7-4D94-8EE4-248360AC54B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09B6A6AB-8DC7-4D94-8EE4-248360AC54B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09B6A6AB-8DC7-4D94-8EE4-248360AC54B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D640CF57-9E8B-4DED-8E57-5333B14E05B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D640CF57-9E8B-4DED-8E57-5333B14E05B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D640CF57-9E8B-4DED-8E57-5333B14E05B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D640CF57-9E8B-4DED-8E57-5333B14E05B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BEE001D-DDEB-47FC-A64C-4D65D83F3774}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BEE001D-DDEB-47FC-A64C-4D65D83F3774}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BEE001D-DDEB-47FC-A64C-4D65D83F3774}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BEE001D-DDEB-47FC-A64C-4D65D83F3774}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8241F397-D5A6-41DA-937D-CDEC0EFA6E85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8241F397-D5A6-41DA-937D-CDEC0EFA6E85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8241F397-D5A6-41DA-937D-CDEC0EFA6E85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8241F397-D5A6-41DA-937D-CDEC0EFA6E85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCEA63CD-9FA9-46D6-97F8-E9C70D995778}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCEA63CD-9FA9-46D6-97F8-E9C70D995778}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCEA63CD-9FA9-46D6-97F8-E9C70D995778}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCEA63CD-9FA9-46D6-97F8-E9C70D995778}.Release|Any CPU.Build.0 = Release|Any CPU
+		{210E62F8-FE07-4F9E-95F2-672D3B96A76C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{210E62F8-FE07-4F9E-95F2-672D3B96A76C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{210E62F8-FE07-4F9E-95F2-672D3B96A76C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{210E62F8-FE07-4F9E-95F2-672D3B96A76C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

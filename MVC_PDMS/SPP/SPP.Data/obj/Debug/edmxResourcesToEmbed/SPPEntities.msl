@@ -1,0 +1,523 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SPPEntityModelStoreContainer" CdmEntityContainer="SPPContext">
+    <EntitySetMapping Name="Enumeration">
+      <EntityTypeMapping TypeName="SPPEntityModel.Enumeration">
+        <MappingFragment StoreEntitySet="Enumeration">
+          <ScalarProperty Name="Enum_UID" ColumnName="Enum_UID" />
+          <ScalarProperty Name="Enum_Type" ColumnName="Enum_Type" />
+          <ScalarProperty Name="Enum_Name" ColumnName="Enum_Name" />
+          <ScalarProperty Name="Enum_Value" ColumnName="Enum_Value" />
+          <ScalarProperty Name="Decription" ColumnName="Decription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FlowChart_Detail">
+      <EntityTypeMapping TypeName="SPPEntityModel.FlowChart_Detail">
+        <MappingFragment StoreEntitySet="FlowChart_Detail">
+          <ScalarProperty Name="FlowChart_Version_Comment" ColumnName="FlowChart_Version_Comment" />
+          <ScalarProperty Name="FlowChart_Detail_UID" ColumnName="FlowChart_Detail_UID" />
+          <ScalarProperty Name="FlowChart_Master_UID" ColumnName="FlowChart_Master_UID" />
+          <ScalarProperty Name="System_FunPlant_UID" ColumnName="System_FunPlant_UID" />
+          <ScalarProperty Name="Process_Seq" ColumnName="Process_Seq" />
+          <ScalarProperty Name="DRI" ColumnName="DRI" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="Process" ColumnName="Process" />
+          <ScalarProperty Name="Product_Stage" ColumnName="Product_Stage" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Process_Desc" ColumnName="Process_Desc" />
+          <ScalarProperty Name="Material_No" ColumnName="Material_No" />
+          <ScalarProperty Name="FlowChart_Version" ColumnName="FlowChart_Version" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FlowChart_Detail_Temp">
+      <EntityTypeMapping TypeName="SPPEntityModel.FlowChart_Detail_Temp">
+        <MappingFragment StoreEntitySet="FlowChart_Detail_Temp">
+          <ScalarProperty Name="FlowChart_Version_Comment" ColumnName="FlowChart_Version_Comment" />
+          <ScalarProperty Name="FlowChart_DT_UID" ColumnName="FlowChart_DT_UID" />
+          <ScalarProperty Name="FlowChart_Master_UID" ColumnName="FlowChart_Master_UID" />
+          <ScalarProperty Name="System_FunPlant_UID" ColumnName="System_FunPlant_UID" />
+          <ScalarProperty Name="Process_Seq" ColumnName="Process_Seq" />
+          <ScalarProperty Name="DRI" ColumnName="DRI" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="Process" ColumnName="Process" />
+          <ScalarProperty Name="Product_Stage" ColumnName="Product_Stage" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Process_Desc" ColumnName="Process_Desc" />
+          <ScalarProperty Name="Material_No" ColumnName="Material_No" />
+          <ScalarProperty Name="FlowChart_Version" ColumnName="FlowChart_Version" />
+          <ScalarProperty Name="Rise_Version_Flag" ColumnName="Rise_Version_Flag" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FlowChart_MgData">
+      <EntityTypeMapping TypeName="SPPEntityModel.FlowChart_MgData">
+        <MappingFragment StoreEntitySet="FlowChart_MgData">
+          <ScalarProperty Name="Product_Date" ColumnName="Product_Date" />
+          <ScalarProperty Name="FlowChart_MgData_UID" ColumnName="FlowChart_MgData_UID" />
+          <ScalarProperty Name="FlowChart_Detail_UID" ColumnName="FlowChart_Detail_UID" />
+          <ScalarProperty Name="Product_Plan" ColumnName="Product_Plan" />
+          <ScalarProperty Name="Target_Yield" ColumnName="Target_Yield" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FlowChart_MgData_Temp">
+      <EntityTypeMapping TypeName="SPPEntityModel.FlowChart_MgData_Temp">
+        <MappingFragment StoreEntitySet="FlowChart_MgData_Temp">
+          <ScalarProperty Name="FlowChart_MgDataT_UID" ColumnName="FlowChart_MgDataT_UID" />
+          <ScalarProperty Name="FlowChart_DT_UID" ColumnName="FlowChart_DT_UID" />
+          <ScalarProperty Name="Product_Plan" ColumnName="Product_Plan" />
+          <ScalarProperty Name="Target_Yield" ColumnName="Target_Yield" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_ErrorInfo">
+      <EntityTypeMapping TypeName="SPPEntityModel.Product_ErrorInfo">
+        <MappingFragment StoreEntitySet="Product_ErrorInfo">
+          <ScalarProperty Name="ErrorInfo_UID" ColumnName="ErrorInfo_UID" />
+          <ScalarProperty Name="Product_UID" ColumnName="Product_UID" />
+          <ScalarProperty Name="Good_MismatchFlag" ColumnName="Good_MismatchFlag" />
+          <ScalarProperty Name="Picking_MismatchFlag" ColumnName="Picking_MismatchFlag" />
+          <ScalarProperty Name="FunPlant_Now" ColumnName="FunPlant_Now" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Input">
+      <EntityTypeMapping TypeName="SPPEntityModel.Product_Input">
+        <MappingFragment StoreEntitySet="Product_Input">
+          <ScalarProperty Name="FlowChart_Detail_UID" ColumnName="FlowChart_Detail_UID" />
+          <ScalarProperty Name="DRI" ColumnName="DRI" />
+          <ScalarProperty Name="IsLast" ColumnName="IsLast" />
+          <ScalarProperty Name="Product_UID" ColumnName="Product_UID" />
+          <ScalarProperty Name="Is_Comfirm" ColumnName="Is_Comfirm" />
+          <ScalarProperty Name="Product_Date" ColumnName="Product_Date" />
+          <ScalarProperty Name="Time_Interval" ColumnName="Time_Interval" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="Project" ColumnName="Project" />
+          <ScalarProperty Name="Part_Types" ColumnName="Part_Types" />
+          <ScalarProperty Name="FunPlant" ColumnName="FunPlant" />
+          <ScalarProperty Name="FunPlant_Manager" ColumnName="FunPlant_Manager" />
+          <ScalarProperty Name="Product_Phase" ColumnName="Product_Phase" />
+          <ScalarProperty Name="Process_Seq" ColumnName="Process_Seq" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="Process" ColumnName="Process" />
+          <ScalarProperty Name="FlowChart_Master_UID" ColumnName="FlowChart_Master_UID" />
+          <ScalarProperty Name="FlowChart_Version" ColumnName="FlowChart_Version" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Prouct_Plan" ColumnName="Prouct_Plan" />
+          <ScalarProperty Name="Product_Stage" ColumnName="Product_Stage" />
+          <ScalarProperty Name="Target_Yield" ColumnName="Target_Yield" />
+          <ScalarProperty Name="Good_QTY" ColumnName="Good_QTY" />
+          <ScalarProperty Name="Good_MismatchFlag" ColumnName="Good_MismatchFlag" />
+          <ScalarProperty Name="Picking_QTY" ColumnName="Picking_QTY" />
+          <ScalarProperty Name="WH_Picking_QTY" ColumnName="WH_Picking_QTY" />
+          <ScalarProperty Name="Picking_MismatchFlag" ColumnName="Picking_MismatchFlag" />
+          <ScalarProperty Name="NG_QTY" ColumnName="NG_QTY" />
+          <ScalarProperty Name="WH_QTY" ColumnName="WH_QTY" />
+          <ScalarProperty Name="WIP_QTY" ColumnName="WIP_QTY" />
+          <ScalarProperty Name="Adjust_QTY" ColumnName="Adjust_QTY" />
+          <ScalarProperty Name="Creator_UID" ColumnName="Creator_UID" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Material_No" ColumnName="Material_No" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Input_History">
+      <EntityTypeMapping TypeName="SPPEntityModel.Product_Input_History">
+        <MappingFragment StoreEntitySet="Product_Input_History">
+          <ScalarProperty Name="FlowChart_Detail_UID" ColumnName="FlowChart_Detail_UID" />
+          <ScalarProperty Name="DRI" ColumnName="DRI" />
+          <ScalarProperty Name="Product_UID" ColumnName="Product_UID" />
+          <ScalarProperty Name="Is_Comfirm" ColumnName="Is_Comfirm" />
+          <ScalarProperty Name="Product_Date" ColumnName="Product_Date" />
+          <ScalarProperty Name="Time_Interval" ColumnName="Time_Interval" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="Project" ColumnName="Project" />
+          <ScalarProperty Name="Part_Types" ColumnName="Part_Types" />
+          <ScalarProperty Name="FunPlant" ColumnName="FunPlant" />
+          <ScalarProperty Name="FunPlant_Manager" ColumnName="FunPlant_Manager" />
+          <ScalarProperty Name="Product_Phase" ColumnName="Product_Phase" />
+          <ScalarProperty Name="Process_Seq" ColumnName="Process_Seq" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="Process" ColumnName="Process" />
+          <ScalarProperty Name="FlowChart_Master_UID" ColumnName="FlowChart_Master_UID" />
+          <ScalarProperty Name="FlowChart_Version" ColumnName="FlowChart_Version" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Prouct_Plan" ColumnName="Prouct_Plan" />
+          <ScalarProperty Name="Product_Stage" ColumnName="Product_Stage" />
+          <ScalarProperty Name="Target_Yield" ColumnName="Target_Yield" />
+          <ScalarProperty Name="Good_QTY" ColumnName="Good_QTY" />
+          <ScalarProperty Name="Good_MismatchFlag" ColumnName="Good_MismatchFlag" />
+          <ScalarProperty Name="Picking_QTY" ColumnName="Picking_QTY" />
+          <ScalarProperty Name="WH_Picking_QTY" ColumnName="WH_Picking_QTY" />
+          <ScalarProperty Name="Picking_MismatchFlag" ColumnName="Picking_MismatchFlag" />
+          <ScalarProperty Name="NG_QTY" ColumnName="NG_QTY" />
+          <ScalarProperty Name="WH_QTY" ColumnName="WH_QTY" />
+          <ScalarProperty Name="WIP_QTY" ColumnName="WIP_QTY" />
+          <ScalarProperty Name="Adjust_QTY" ColumnName="Adjust_QTY" />
+          <ScalarProperty Name="Creator_UID" ColumnName="Creator_UID" />
+          <ScalarProperty Name="Create_Date" ColumnName="Create_Date" />
+          <ScalarProperty Name="Material_No" ColumnName="Material_No" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Project_Users_Group">
+      <EntityTypeMapping TypeName="SPPEntityModel.Project_Users_Group">
+        <MappingFragment StoreEntitySet="Project_Users_Group">
+          <ScalarProperty Name="Proj_User_Group_UID" ColumnName="Proj_User_Group_UID" />
+          <ScalarProperty Name="Project_UID" ColumnName="Project_UID" />
+          <ScalarProperty Name="Account_UID" ColumnName="Account_UID" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_BU_D">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_BU_D">
+        <MappingFragment StoreEntitySet="System_BU_D">
+          <ScalarProperty Name="BU_D_UID" ColumnName="BU_D_UID" />
+          <ScalarProperty Name="BU_M_UID" ColumnName="BU_M_UID" />
+          <ScalarProperty Name="BU_D_ID" ColumnName="BU_D_ID" />
+          <ScalarProperty Name="BU_D_Name" ColumnName="BU_D_Name" />
+          <ScalarProperty Name="Begin_Date" ColumnName="Begin_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_BU_M">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_BU_M">
+        <MappingFragment StoreEntitySet="System_BU_M">
+          <ScalarProperty Name="BU_M_UID" ColumnName="BU_M_UID" />
+          <ScalarProperty Name="BU_ID" ColumnName="BU_ID" />
+          <ScalarProperty Name="BU_Name" ColumnName="BU_Name" />
+          <ScalarProperty Name="BUManager_Name" ColumnName="BUManager_Name" />
+          <ScalarProperty Name="BUManager_Tel" ColumnName="BUManager_Tel" />
+          <ScalarProperty Name="BUManager_Email" ColumnName="BUManager_Email" />
+          <ScalarProperty Name="Begin_Date" ColumnName="Begin_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_Function">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_Function">
+        <MappingFragment StoreEntitySet="System_Function">
+          <ScalarProperty Name="Mobile_URL" ColumnName="Mobile_URL" />
+          <ScalarProperty Name="Function_UID" ColumnName="Function_UID" />
+          <ScalarProperty Name="Parent_Function_UID" ColumnName="Parent_Function_UID" />
+          <ScalarProperty Name="Function_ID" ColumnName="Function_ID" />
+          <ScalarProperty Name="Function_Name" ColumnName="Function_Name" />
+          <ScalarProperty Name="Function_Desc" ColumnName="Function_Desc" />
+          <ScalarProperty Name="Order_Index" ColumnName="Order_Index" />
+          <ScalarProperty Name="Icon_ClassName" ColumnName="Icon_ClassName" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="Is_Show" ColumnName="Is_Show" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_Function_Plant">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_Function_Plant">
+        <MappingFragment StoreEntitySet="System_Function_Plant">
+          <ScalarProperty Name="System_FunPlant_UID" ColumnName="System_FunPlant_UID" />
+          <ScalarProperty Name="System_Plant_UID" ColumnName="System_Plant_UID" />
+          <ScalarProperty Name="OP_Types" ColumnName="OP_Types" />
+          <ScalarProperty Name="FunPlant" ColumnName="FunPlant" />
+          <ScalarProperty Name="FunPlant_Manager" ColumnName="FunPlant_Manager" />
+          <ScalarProperty Name="FunPlant_Contact" ColumnName="FunPlant_Contact" />
+          <ScalarProperty Name="Begin_Date" ColumnName="Begin_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_FunctionSub">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_FunctionSub">
+        <MappingFragment StoreEntitySet="System_FunctionSub">
+          <ScalarProperty Name="System_FunctionSub_UID" ColumnName="System_FunctionSub_UID" />
+          <ScalarProperty Name="Function_UID" ColumnName="Function_UID" />
+          <ScalarProperty Name="Sub_Fun" ColumnName="Sub_Fun" />
+          <ScalarProperty Name="Sub_Fun_Name" ColumnName="Sub_Fun_Name" />
+          <ScalarProperty Name="Sub_Fun_URL" ColumnName="Sub_Fun_URL" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_Organization">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_Organization">
+        <MappingFragment StoreEntitySet="System_Organization">
+          <ScalarProperty Name="Organization_UID" ColumnName="Organization_UID" />
+          <ScalarProperty Name="Organization_ID" ColumnName="Organization_ID" />
+          <ScalarProperty Name="Organization_Name" ColumnName="Organization_Name" />
+          <ScalarProperty Name="Organization_Desc" ColumnName="Organization_Desc" />
+          <ScalarProperty Name="OrgManager_Name" ColumnName="OrgManager_Name" />
+          <ScalarProperty Name="OrgManager_Tel" ColumnName="OrgManager_Tel" />
+          <ScalarProperty Name="OrgManager_Email" ColumnName="OrgManager_Email" />
+          <ScalarProperty Name="Cost_Center" ColumnName="Cost_Center" />
+          <ScalarProperty Name="Begin_Date" ColumnName="Begin_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_OrganizationBOM">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_OrganizationBOM">
+        <MappingFragment StoreEntitySet="System_OrganizationBOM">
+          <ScalarProperty Name="OrganizationBOM_UID" ColumnName="OrganizationBOM_UID" />
+          <ScalarProperty Name="ParentOrg_UID" ColumnName="ParentOrg_UID" />
+          <ScalarProperty Name="Order_Index" ColumnName="Order_Index" />
+          <ScalarProperty Name="ChildOrg_UID" ColumnName="ChildOrg_UID" />
+          <ScalarProperty Name="Begin_Date" ColumnName="Begin_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_Plant">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_Plant">
+        <MappingFragment StoreEntitySet="System_Plant">
+          <ScalarProperty Name="System_Plant_UID" ColumnName="System_Plant_UID" />
+          <ScalarProperty Name="CCODE" ColumnName="CCODE" />
+          <ScalarProperty Name="Plant" ColumnName="Plant" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Name_0" ColumnName="Name_0" />
+          <ScalarProperty Name="Name_1" ColumnName="Name_1" />
+          <ScalarProperty Name="PlantManager_Name" ColumnName="PlantManager_Name" />
+          <ScalarProperty Name="PlantManager_Tel" ColumnName="PlantManager_Tel" />
+          <ScalarProperty Name="PlantManager_Email" ColumnName="PlantManager_Email" />
+          <ScalarProperty Name="Name_2" ColumnName="Name_2" />
+          <ScalarProperty Name="Legal_Entity_EN" ColumnName="Legal_Entity_EN" />
+          <ScalarProperty Name="Legal_Entity_ZH" ColumnName="Legal_Entity_ZH" />
+          <ScalarProperty Name="Address_EN" ColumnName="Address_EN" />
+          <ScalarProperty Name="Address_ZH" ColumnName="Address_ZH" />
+          <ScalarProperty Name="Coordinate" ColumnName="Coordinate" />
+          <ScalarProperty Name="Begin_Date" ColumnName="Begin_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_Project">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_Project">
+        <MappingFragment StoreEntitySet="System_Project">
+          <ScalarProperty Name="Project_UID" ColumnName="Project_UID" />
+          <ScalarProperty Name="Project_Code" ColumnName="Project_Code" />
+          <ScalarProperty Name="BU_D_UID" ColumnName="BU_D_UID" />
+          <ScalarProperty Name="Project_Name" ColumnName="Project_Name" />
+          <ScalarProperty Name="Product_Phase" ColumnName="Product_Phase" />
+          <ScalarProperty Name="Start_Date" ColumnName="Start_Date" />
+          <ScalarProperty Name="Closed_Date" ColumnName="Closed_Date" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_Role">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_Role">
+        <MappingFragment StoreEntitySet="System_Role">
+          <ScalarProperty Name="Role_UID" ColumnName="Role_UID" />
+          <ScalarProperty Name="Role_ID" ColumnName="Role_ID" />
+          <ScalarProperty Name="Role_Name" ColumnName="Role_Name" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_Role_Function">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_Role_Function">
+        <MappingFragment StoreEntitySet="System_Role_Function">
+          <ScalarProperty Name="System_Role_Function_UID" ColumnName="System_Role_Function_UID" />
+          <ScalarProperty Name="Role_UID" ColumnName="Role_UID" />
+          <ScalarProperty Name="Function_UID" ColumnName="Function_UID" />
+          <ScalarProperty Name="Is_Show" ColumnName="Is_Show" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_Role_FunctionSub">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_Role_FunctionSub">
+        <MappingFragment StoreEntitySet="System_Role_FunctionSub">
+          <ScalarProperty Name="System_Role_FunctionSub_UID" ColumnName="System_Role_FunctionSub_UID" />
+          <ScalarProperty Name="System_Role_Function_UID" ColumnName="System_Role_Function_UID" />
+          <ScalarProperty Name="System_FunctionSub_UID" ColumnName="System_FunctionSub_UID" />
+          <ScalarProperty Name="Sub_Flag" ColumnName="Sub_Flag" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_User_Business_Group">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_User_Business_Group">
+        <MappingFragment StoreEntitySet="System_User_Business_Group">
+          <ScalarProperty Name="System_User_BU_UID" ColumnName="System_User_BU_UID" />
+          <ScalarProperty Name="Account_UID" ColumnName="Account_UID" />
+          <ScalarProperty Name="BU_M_UID" ColumnName="BU_M_UID" />
+          <ScalarProperty Name="BU_D_UID" ColumnName="BU_D_UID" />
+          <ScalarProperty Name="Begin_Date" ColumnName="Begin_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_User_FunPlant">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_User_FunPlant">
+        <MappingFragment StoreEntitySet="System_User_FunPlant">
+          <ScalarProperty Name="System_User_FunPlant_UID" ColumnName="System_User_FunPlant_UID" />
+          <ScalarProperty Name="System_FunPlant_UID" ColumnName="System_FunPlant_UID" />
+          <ScalarProperty Name="Account_UID" ColumnName="Account_UID" />
+          <ScalarProperty Name="Begin_Date" ColumnName="Begin_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_User_Plant">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_User_Plant">
+        <MappingFragment StoreEntitySet="System_User_Plant">
+          <ScalarProperty Name="System_User_Plant_UID" ColumnName="System_User_Plant_UID" />
+          <ScalarProperty Name="Account_UID" ColumnName="Account_UID" />
+          <ScalarProperty Name="System_Plant_UID" ColumnName="System_Plant_UID" />
+          <ScalarProperty Name="Begin_Date" ColumnName="Begin_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_User_Role">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_User_Role">
+        <MappingFragment StoreEntitySet="System_User_Role">
+          <ScalarProperty Name="System_User_Role_UID" ColumnName="System_User_Role_UID" />
+          <ScalarProperty Name="Account_UID" ColumnName="Account_UID" />
+          <ScalarProperty Name="Role_UID" ColumnName="Role_UID" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_UserOrg">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_UserOrg">
+        <MappingFragment StoreEntitySet="System_UserOrg">
+          <ScalarProperty Name="System_UserOrgUID" ColumnName="System_UserOrgUID" />
+          <ScalarProperty Name="Account_UID" ColumnName="Account_UID" />
+          <ScalarProperty Name="Organization_UID" ColumnName="Organization_UID" />
+          <ScalarProperty Name="Begin_Date" ColumnName="Begin_Date" />
+          <ScalarProperty Name="End_Date" ColumnName="End_Date" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="System_Users">
+      <EntityTypeMapping TypeName="SPPEntityModel.System_Users">
+        <MappingFragment StoreEntitySet="System_Users">
+          <ScalarProperty Name="LoginToken" ColumnName="LoginToken" />
+          <ScalarProperty Name="Account_UID" ColumnName="Account_UID" />
+          <ScalarProperty Name="User_NTID" ColumnName="User_NTID" />
+          <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+          <ScalarProperty Name="Enable_Flag" ColumnName="Enable_Flag" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Tel" ColumnName="Tel" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Warning_List">
+      <EntityTypeMapping TypeName="SPPEntityModel.Warning_List">
+        <MappingFragment StoreEntitySet="Warning_List">
+          <ScalarProperty Name="Warning_UID" ColumnName="Warning_UID" />
+          <ScalarProperty Name="Warning_Types" ColumnName="Warning_Types" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="Project" ColumnName="Project" />
+          <ScalarProperty Name="Part_Types" ColumnName="Part_Types" />
+          <ScalarProperty Name="Product_Phase" ColumnName="Product_Phase" />
+          <ScalarProperty Name="Product_Date" ColumnName="Product_Date" />
+          <ScalarProperty Name="Time_Interval" ColumnName="Time_Interval" />
+          <ScalarProperty Name="FncPlant_Now" ColumnName="FncPlant_Now" />
+          <ScalarProperty Name="FncPlant_Effect" ColumnName="FncPlant_Effect" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FlowChart_Master">
+      <EntityTypeMapping TypeName="SPPEntityModel.FlowChart_Master">
+        <MappingFragment StoreEntitySet="FlowChart_Master">
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Is_Closed" ColumnName="Is_Closed" />
+          <ScalarProperty Name="Is_Latest" ColumnName="Is_Latest" />
+          <ScalarProperty Name="FlowChart_Version_Comment" ColumnName="FlowChart_Version_Comment" />
+          <ScalarProperty Name="FlowChart_Version" ColumnName="FlowChart_Version" />
+          <ScalarProperty Name="Part_Types" ColumnName="Part_Types" />
+          <ScalarProperty Name="Project_UID" ColumnName="Project_UID" />
+          <ScalarProperty Name="FlowChart_Master_UID" ColumnName="FlowChart_Master_UID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="usp_AlterMisMatchFlag" FunctionName="SPPEntityModel.Store.usp_AlterMisMatchFlag" />
+    <FunctionImportMapping FunctionImportName="usp_CalculateWIP" FunctionName="SPPEntityModel.Store.usp_CalculateWIP" />
+    <FunctionImportMapping FunctionImportName="usp_get_mobilefunctions_by_useruid" FunctionName="SPPEntityModel.Store.usp_get_mobilefunctions_by_useruid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SPPEntityModel.usp_get_mobilefunctions_by_useruid_Result">
+          <ScalarProperty Name="Function_UID" ColumnName="Function_UID" />
+          <ScalarProperty Name="Parent_Function_UID" ColumnName="Parent_Function_UID" />
+          <ScalarProperty Name="Function_ID" ColumnName="Function_ID" />
+          <ScalarProperty Name="Function_Name" ColumnName="Function_Name" />
+          <ScalarProperty Name="Function_Desc" ColumnName="Function_Desc" />
+          <ScalarProperty Name="Order_Index" ColumnName="Order_Index" />
+          <ScalarProperty Name="Icon_ClassName" ColumnName="Icon_ClassName" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="Mobile_URL" ColumnName="Mobile_URL" />
+          <ScalarProperty Name="Is_Show" ColumnName="Is_Show" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="usp_SynFlowChartDetailDataFromTemp" FunctionName="SPPEntityModel.Store.usp_SynFlowChartDetailDataFromTemp" />
+    <FunctionImportMapping FunctionImportName="usp_AllProductData" FunctionName="SPPEntityModel.Store.usp_AllProductData" />
+    <EntitySetMapping Name="WIP_Change_History">
+      <EntityTypeMapping TypeName="SPPEntityModel.WIP_Change_History">
+        <MappingFragment StoreEntitySet="WIP_Change_History">
+          <ScalarProperty Name="Modified_Date" ColumnName="Modified_Date" />
+          <ScalarProperty Name="Modified_UID" ColumnName="Modified_UID" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="WIP_Add" ColumnName="WIP_Add" />
+          <ScalarProperty Name="WIP_Old" ColumnName="WIP_Old" />
+          <ScalarProperty Name="Product_UID" ColumnName="Product_UID" />
+          <ScalarProperty Name="Change_Type" ColumnName="Change_Type" />
+          <ScalarProperty Name="Change_UID" ColumnName="Change_UID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

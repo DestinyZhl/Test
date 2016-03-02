@@ -1,0 +1,908 @@
+﻿<!-- Main content -->
+<style type="text/css">
+    .table-striped > tbody > tr:nth-of-type(odd) {
+        background-color: lightgray !important;
+    }
+</style>
+<section class="content portal-content">
+    <!-- 确认是否保存资料模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close"
+                            data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        <font color="blue">确认保存资料吗?</font>
+                    </h4>
+                </div>
+                <div class="modal-body" id="js_funcplant_modal">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button type="button" class="btn btn-primary" id="js_btn_save_data">
+                        保存资料
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <!--次標題 與 搜尋-->
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <div class="col-md-12 col-lg-2" id="js_save_status_div">
+                <h4 class="margin-td-5" id="js_save_status"></h4>
+            </div>
+            <div class="col-md-12 col-lg-10"></div>
+        </div>
+        <!--次標題與Search keyword-->
+        <div class="col-md-12 col-lg-9">
+            <h4 class="margin-td-5" id="js_search_keywords"></h4>
+        </div><!-- /col-次標題與Search keyword -->
+        <!--col-右方搜尋與功能按鈕列-->
+        <div class="col-md-12 search-field col-lg-3">
+            <a class="btn btn-default btn-sm" data-toggle="modal" data-target="#js_search_modal" id="js_btn_search"><i class="fa fa-search"></i> 查询</a>
+            <a id="btn_export" class="btn btn-default btn-sm" role="button"><i class="glyphicon glyphicon-save"></i> 导出EXL</a>
+        </div><!-- /col-右方搜尋與功能按鈕列-->
+    </div><!--/次標題 與 搜尋-->
+    <hr class="hr-custom">
+    <div>
+        <ul id="myTab" class="nav nav-tabs"></ul>
+        <div id="myTabContent" class="tab-content">
+        </div>
+    </div>
+    <div style="margin-top: 10px; margin-bottom: 10px">
+        <label>日期:</label><label id="js_datetime"></label> <label>时段:</label><label id="js_time_interval"></label> <label>制程直通率: </label><label id="js_process_first_pass_yield"></label>
+        <button class="btn btn-primary btn-sm" data-toggle="modal" id="js_btn_save" style="float: right"><i class="fa fa-save"></i>保存资料</button>
+        @*<button id="js_send_email">发送邮件</button>*@
+
+    </div>
+    <div class="row">
+        <!--表格-->
+        <div class="col-md-12 table-container">
+            <table class="table table-striped table-hover table-condensed nowrap" id="js_ppcheckdata_datatable">
+                <thead>
+                    <tr>
+                        <th class="table-col-seq nosort">Seq</th>
+                        <th class="table-col-action nosort">Action</th>
+                        <th>制程序号</th>
+                        <th>场地</th>
+                        <th>功能厂</th>
+                        <th>制程</th>
+                        <th>颜色</th>
+                        <th>负责主管</th>
+                        <th>目标良率</th>
+                        <th>计划</th>
+                        <th>滚动计划</th>
+                        <th>领料</th>
+                        <th>仓库领料</th>
+                        <th>良品</th>
+                        <th>试制调机</th>
+                        <th>入库</th>
+                        <th>NG</th>
+                        <th>滚动达成率</th>
+                        <th>最终良率</th>
+                        <th>WIP</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th class="table-col-seq nosort">Seq</th>
+                        <th class="table-col-action nosort">Action</th>
+                        <th>制程序号</th>
+                        <th>场地</th>
+                        <th>功能厂</th>
+                        <th>制程</th>
+                        <th>颜色</th>
+                        <th>负责主管</th>
+                        <th>目标良率</th>
+                        <th>计划</th>
+                        <th>滚动计划</th>
+                        <th>领料</th>
+                        <th>仓库领料</th>
+                        <th>良品</th>
+                        <th>试制调机</th>
+                        <th>入库</th>
+                        <th>NG</th>
+                        <th>滚动达成率</th>
+                        <th>最终良率</th>
+                        <th>WIP</th>
+                    </tr>
+                </tfoot>
+            </table>
+            <div id="page" class="row"></div>
+
+        </div><!--/表格-->
+    </div><!-- / 內容 表格列 -->
+</section><!-- /.content -->
+@section ViewModals{
+    <!-- Search Modal -->
+    <div class="modal fade" id="js_search_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">查询条件</h4>
+                </div>
+                <div class="modal-body form-horizontal">
+                    <div class="row">
+                        <form id="js_form_query" data-need-validate="true">
+                            <div class="form-group col-xs-12 col-md-6">
+                                <label class="col-sm-5 control-label" for="js_s_input_customer">客户</label>
+                                <div class="col-sm-7 ">
+                                    <select class="form-control input-sm" id="js_s_input_customer" name="Customer"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <label class="col-sm-5 control-label" for="js_s_input_project">专案</label>
+                                <div class="col-sm-7 ">
+                                    <select class="form-control input-sm" id="js_s_input_project" name="Project"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <label class="col-sm-5 control-label" for="js_s_input_product_phase">生产阶段</label>
+                                <div class="col-sm-7 ">
+                                    <select class="form-control input-sm" id="js_s_input_product_phase" name="Product_Phase"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <label class="col-sm-5 control-label" for="js_s_input_part_types">部件类型</label>
+                                <div class="col-sm-7 ">
+                                    <select class="form-control input-sm" id="js_s_input_part_types" name="Part_Types"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <label class="col-sm-5 control-label" for="js_s_input_color">颜色</label>
+                                <div class="col-sm-7 ">
+                                    <select class="form-control input-sm" id="js_s_input_color" name="Color"></select>
+                                </div>
+                            </div>
+                            <div style="display: none" class="form-group col-xs-12 col-md-6">
+                                <label class="col-sm-5 control-label" for="js_s_input_date">日期</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <input type="text" name="Reference_Date" class="form-control input-sm date" id="js_s_input_date">
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: none" class="form-group col-xs-12 col-md-6">
+                                <label class="col-sm-5 control-label" for="js_s_input_interval_time">时段选择</label>
+                                <div class="col-sm-7 ">
+                                    <select multiple="multiple" size="2" class="form-control input-sm" id="js_s_input_interval_time" name="Interval_Time"></select>
+                                </div>
+                            </div>
+                            <input type="hidden" name="Tab_Select_Text" id="js_tab_select_text" value="0" />
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn-search" type="button" class="btn btn-primary ">检核资料</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="js_edit_modal" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="关闭"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">修改WIP</h4>
+                </div>
+                <form id="js_form_wip_edit" class="form-horizontal clearfix">
+                    <div class="modal-body form-horizontal">
+                        <div class="row">
+                            <input type="hidden" name="Product_UID" id="js_hidden_product_uid" value="0" />
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label" for="js_input_now_wip">当前WIP</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control input-sm" id="js_input_now_wip" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label" for="js_input_add_wip">新增/减少WIP</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control input-sm required" id="js_input_add_wip" name="Addwip" placeholder="新增WIP:NO;减少:-NO;"
+                                               required data-msg-required="请输入整数的WIP,负数表示减少"
+                                               data-rule-maxlength="50" data-msg-maxlength="Please enter no more than {0} characters in Location.">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-sm-5 control-label" for="js_input_comment">备注</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control input-sm required" id="js_input_comment" name="Comment" placeholder="必须填写备注"
+                                               required data-msg-required="请输入修改WIP的原因">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--jquery validata error container-->
+                            <div class="col-xs-12"><ul class="list-group validate-error"></ul></div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary btn-sm" data-dismiss="modal"><i class="fa fa-times"></i> 取消</button>
+                        <button type="button" class="btn btn-primary btn-sm" id="js_btn_save_edit_wip"><i class="fa fa-save"></i> 保存修改</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+@section ViewScripts{
+    @* ReSharper disable once UsageOfPossiblyUnassignedValue *@
+    <script type="text/javascript">
+        $(function () {
+            var subDatatable = null;
+            //#region 预设reference_date
+            var myDate = new Date();
+            $("#js_s_input_date").val(myDate.toLocaleDateString());
+            //#endregion
+            var PPCheckDataUrls = {
+                EditWIPView: '@Url.Action("EditWIPView", "EventReportManager")',
+                QueryPPCheckDatas: '@Url.Action("QueryPPCheckDatas", "EventReportManager")',
+                GetCustomerSource: '@Url.Action("GetCustomerSource", "EventReportManager")',
+                GetProjectSource: '@Url.Action("GetProjectSource", "EventReportManager")',
+                GetProductPhaseSource: '@Url.Action("GetProductPhaseSource", "EventReportManager")',
+                GetPartTypesSource: '@Url.Action("GetPartTypesSource", "EventReportManager")',
+                GetColorSource: '@Url.Action("GetColorSource", "EventReportManager")',
+                GetIntervalTime: '@Url.Action("GetIntervalTime", "EventReportManager")',
+                EditWIP: '@Url.Action("EditWIP", "EventReportManager")',
+                DoExportPPCheckData: '@Url.Action("DoExportPPCheckData", "EventReportManager")',
+                GetComfirmValue: '@Url.Action("GetComfirmValue", "EventReportManager")',
+                CheckFunPlantDataIsFull: '@Url.Action("CheckFunPlantDataIsFull", "EventReportManager")',
+                FillZeroProductData: '@Url.Action("FillZeroProductData", "ProductInput")',
+                SendEmail: '@Url.Action("SendEmail", "ProductInput")',
+                GetIsComfirmNo: '@Url.Action("GetIsComfirmNo", "EventReportManager")'
+            };
+            //#region 查询条件的五级联动
+            //初始化数据
+            GetCustomer();
+            GetInterval();
+
+            $("#js_s_input_customer").change(function ff() {
+                GetProject();
+            });
+            $("#js_s_input_project").change(function ff() {
+                GetProductPhase();
+            });
+            $("#js_s_input_product_phase").change(function ff() {
+                GetPartTypes();
+            });
+            $("#js_s_input_part_types").change(function ff() {
+                GetColor();
+            });
+
+            //获取数据
+            function GetCustomer() {
+                $("#js_s_input_customer").empty();
+                $.post(PPCheckDataUrls.GetCustomerSource, function (data) {
+                    if (data != "") {
+                        $.each(data, function (i, item) {
+                            $("<option></option>")
+                                .val(item)
+                                .text(item)
+                                .appendTo($("#js_s_input_customer"));
+                        });
+                        GetProject();
+                    }
+                });
+            }
+
+            function GetProject() {
+                $("#js_s_input_project").empty();
+                var temp = $("#js_s_input_customer").val();
+                $.post(PPCheckDataUrls.GetProjectSource, { "CustomerName": temp }, function (data) {
+                    if (data != "") {
+                        $.each(data, function (i, item) {
+                            $("<option></option>")
+                                .val(item)
+                                .text(item)
+                                .appendTo($("#js_s_input_project"));
+                        });
+                        GetProductPhase();
+                    }
+                });
+            }
+
+            function GetProductPhase() {
+                $("#js_s_input_product_phase").empty();
+                var tempCustomer = $("#js_s_input_customer").val();
+                var tempProject = $("#js_s_input_project").val();
+                $.post(PPCheckDataUrls.GetProductPhaseSource, { "CustomerName": tempCustomer, "ProjectName": tempProject }, function (data) {
+                    if (data != "") {
+                        $.each(data, function (i, item) {
+
+                            $("<option></option>")
+                                .val(item)
+                                .text(item)
+                                .appendTo($("#js_s_input_product_phase"));
+                        });
+                        GetPartTypes();
+                    }
+                });
+            }
+
+            function GetPartTypes() {
+                $("#js_s_input_part_types").empty();
+                var tempCustomer = $("#js_s_input_customer").val();
+                var tempProject = $("#js_s_input_project").val();
+                var tempPhaseName = $("#js_s_input_product_phase").val();
+                $.post(PPCheckDataUrls.GetPartTypesSource, { "CustomerName": tempCustomer, "ProjectName": tempProject, "ProductPhaseName": tempPhaseName }, function (data) {
+                    if (data != "") {
+                        $.each(data, function (i, item) {
+
+                            $("<option></option>")
+                                .val(item)
+                                .text(item)
+                                .appendTo($("#js_s_input_part_types"));
+                        });
+                        GetColor();
+                    }
+                });
+            }
+
+            function GetColor() {
+                $("#js_s_input_color").empty();
+                var tempCustomer = $("#js_s_input_customer").val();
+                var tempProject = $("#js_s_input_project").val();
+                var tempPhaseName = $("#js_s_input_product_phase").val();
+                var tempPartTypes = $("#js_s_input_part_types").val();
+                $.post(PPCheckDataUrls.GetColorSource, { "CustomerName": tempCustomer, "ProjectName": tempProject, "ProductPhaseName": tempPhaseName, "PartTypesName": tempPartTypes }, function (data) {
+                    if (data != "") {
+                        $.each(data, function (i, item) {
+                            $("<option></option>")
+                                .val(item)
+                                .text(item)
+                                .appendTo($("#js_s_input_color"));
+                        });
+                    }
+                });
+            }
+
+            function GetInterval() {
+                $("#js_s_input_interval_time").empty();
+                $.post(PPCheckDataUrls.GetIntervalTime, { "nowOrAllInterval": "PPCheckData" }, function (data) {
+                    if (data != "") {
+                        $.each(data, function (i, item) {
+                            $('<option disabled="disabled" selected="selected"></option>').val(item["Enum_Name"]).text(item["Enum_Value"]).appendTo($("#js_s_input_interval_time"));
+                        });
+                    }
+                });
+            }
+
+            //#endregion
+            //计算直通率
+            function OnePassFunction() {
+                var dataTable = PPCheckData.GetTabDataTable();
+                var onePass = 100.00;
+                dataTable
+                    .rows()
+                    .every(function (rowIdx, tableLoop, rowLoop) {
+                        var row = $('#js_ppcheckdata_datatable>tbody>tr').eq(rowIdx);
+                        var target_Yield = row.children().eq(8).text() + '%';
+                        row.children().eq(8).text(target_Yield);
+                        var rolling = row.children().eq(17).text() + '%';
+                        row.children().eq(17).text(rolling);
+                        var tyield = row.children().eq(18).text() + '%';
+                        row.children().eq(18).text(tyield);
+                        var FinallyYield = parseInt(row.children().eq(18).text()) / 100.00;
+                        onePass = onePass * FinallyYield;
+                    });
+                onePass = onePass.toFixed(2);
+                $("#js_process_first_pass_yield").text(onePass + "%");
+            }
+
+            var PPCheckData = (function () {
+                //#region columns
+                var columns = [
+                    {
+                        data: null,
+                        className: "table-col-seq min-col-xs"
+                    },
+                    {
+                        data: null,
+                        createdCell: function (td, cellData, rowData, row, col) {
+                            $(td).html(
+                                '<button type="button"name="grid_edit" class="btn btn-primary btn-xs js-grid-edit" data-toggle="modal" data-target="#js_edit_modal" data-wip="' + rowData.WIP_QTY + '" data-id="' + rowData.Product_Input_UID + '">修改WIP</button>'
+                            );
+                        },
+                        className: "text-center min-col-xs"
+                    },
+                    {
+                        data: "Process_Seq",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "Place",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "FunPlant",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "Process",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "Color",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "FunPlant_Manager",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "Target_Yield",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "Product_Plan",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "Product_Plan_Sum",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: null,
+                        createdCell: function (td, cellData, rowData, row, col) {
+                            if (rowData.Picking_MismatchFlag == null)
+                                $(td).html('<input type="text" style="width: 70px;" disabled="disabled"  name="Picking_QTY" class="text-center min-col-lg" value="' + rowData.Picking_QTY + '">');
+                            else
+                                $(td).html('<input type="text" style="background-color: red;width: 70px;" disabled="disabled" name="Picking_QTY" class="text-center min-col-lg" value="' + rowData.Picking_QTY + '">');
+                        },
+                        className: "text-center min-col-xs"
+                    }, {
+                        data: "WH_Picking_QTY",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: null,
+                        createdCell: function (td, cellData, rowData, row, col) {
+                            if (rowData.Good_MismatchFlag == null)
+                                $(td).html('<input type="text" style="width: 70px;" disabled="disabled" name="Good_QTY" class="text-center min-col-lg" value="' + rowData.Good_QTY + '">');
+                            else
+                                $(td).html('<input type="text" style="background-color: red;width: 70px;" disabled="disabled" name="Good_QTY" class="text-center min-col-lg" value="' + rowData.Good_QTY + '">');
+                        },
+                        className: "text-center min-col-xs"
+                    }, {
+                        data: "Adjust_QTY",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "WH_QTY",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "NG_QTY",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "Rolling_Yield_Rate",
+                        className: "min-col-xs text-center"
+                    }, {
+                        data: "Finally_Field",
+                        className: "min-col-xs text-center finally_field"
+                    }, {
+                        data: null,
+                        createdCell: function (td, cellData, rowData, row, col) {
+                            $(td).html('<input type="text"  style="width: 70px;" disabled="disabled" id="WIP' + rowData.Product_Input_UID + '" name="Wip_Qty" class="text-center min-col-lg wipqty" value="' + rowData.WIP_QTY + '">');
+                        },
+                        className: "min-col-xs text-center"
+                    }
+                ];
+                //#endregion
+                var _getParams = function () {
+                    return $('#js_form_query').serialize().replace(/\+/g, " ");
+                };
+                //#region _queryPPCheckData
+                var _queryPPCheckData = function (firstLoad) {
+
+                    var config = {
+                        pageId: "#page",
+                        tableId: "#js_ppcheckdata_datatable",
+                        remoteUrl: PPCheckDataUrls.QueryPPCheckDatas,
+                        searchParams: _getParams(),
+                        tableOptions: {
+                            scrollX: true,
+                            autoWidth: true,
+                            columns: columns,
+                            createdRow: function (row, data, index) {
+                                $(row).data('comfirm_flag', data.Is_Comfirm).data('Product_Stage', data.Product_Stage);
+                            }
+                        }
+                    };
+                    var config2 = {
+                        pageId: "#page",
+                        tableId: "#js_ppcheckdata_datatable",
+                        remoteUrl: PPCheckDataUrls.QueryPPCheckDatas,
+
+                        tableOptions: {
+                            scrollX: true,
+                            autoWidth: true,
+                            columns: columns,
+                            createdRow: function (row, data, index) {
+                                $(row).data('comfirm_flag', data.Is_Comfirm).data('Product_Stage', data.Product_Stage);
+                            }
+                        }
+                    };
+
+                    if (!firstLoad) {
+                        $('#page').page('destroy');
+                        //Criteria.Build放置到到这里，首次加载页面不处理Criteria
+                        SPP.Utility.Criteria.Build();
+                        SPP.Utility.Pages.Set(config);
+
+                    } else {
+                        SPP.Utility.Pages.Set(config2);
+                    }
+                    OnePassFunction();
+                    //更新当前状态
+                    if (Is_Comfirm() != 0) {
+                        $("#js_save_status_div").attr("class", "col-md-12 col-lg-2 alert alert-danger");
+                        $("#js_save_status").text("当前时段保存状态：未保存");
+                    } else {
+                        $("#js_save_status_div").removeAttr("class", "col-md-12 col-lg-2 alert alert-danger");
+                        $("#js_save_status").text("");
+                    }
+
+                    //_setQueryCriteria();
+                };
+                //#endregion
+                return {
+                    Init: function () {
+                        //页面初始化加载查询时，初始化Criteria
+                        SPP.Utility.Criteria.Init();
+                    },
+                    QueryPPCheckDatas: function () {
+                        _queryPPCheckData(false);
+                    },
+                    GetPPCheckDatatable: function () {
+
+                        if (subDatatable == null) {
+
+                            subDatatable = $('#js_ppcheckdata_datatable').DataTable({
+                                paging: false,
+                                searching: false,
+                                ordering: false,
+                                retrieve: true,
+                                columns: columns
+                            });
+                        }
+                        return subDatatable;
+                    },
+                    GetTabDataTable: function () {
+                        subDatatable = $('#js_ppcheckdata_datatable').DataTable({
+                            paging: false,
+                            searching: false,
+                            ordering: false,
+                            retrieve: true,
+                            columns: columns
+                        });
+                        return subDatatable;
+                    }
+
+                }
+            })();
+            PPCheckData.Init();
+
+            function CreateTab() {
+                $("#myTab li").remove();
+                $("#js_s_input_interval_time option").each(function (index) {
+                    if (this.selected == true) {
+                        var tabText = $(this).text();
+                        $("#myTab").append('<li class="ppchecktab" ><a href="#" data-toggle="tab">' + tabText + '</a></li>');
+                    }
+                });
+            }
+
+            //生产阶层线
+            function productStageLine() {
+                var dataTable = PPCheckData.GetPPCheckDatatable();
+                var productStage = 2;
+                dataTable
+                    .rows()
+                    .every(function (rowIdx, tableLoop, rowLoop) {
+                        var row = $('#js_ppcheckdata_datatable>tbody>tr').eq(rowIdx);
+                        if (row.data('Product_Stage') == productStage) {
+                            row.attr("style", "border-top: 3px solid red");
+                            productStage++;
+                        }
+                    });
+            }
+
+            //检查是否功能厂不存在，不存在则Show出错误
+            function checkFunPlant() {
+                var $selectList = $('#js_ppcheckdata_datatable').find('.js-checkbox-item:checked');
+                var exportValue = $('#js_form_query').serializeObject();
+                var tabList = [];
+                $('#myTab a').each(function () {
+                    var tab = {};
+                    tab["Time_InterVal"] = $(this).text();
+                    tabList.push(tab);
+                });
+                exportValue.TabList = tabList;
+                $.post(PPCheckDataUrls.CheckFunPlantDataIsFull, { jsonList: JSON.stringify(exportValue) }, function (data) {
+                    if (data.length == 0)
+                        return "SUCCESS";
+                    else
+                        return data.toString();
+                });
+                //var url = PPCheckDataUrls.CheckFunPlantDataIsFull;
+                //url += "?jsonList=" + JSON.stringify(exportValue);
+                //window.location.href = url;
+            }
+
+            //查询数据
+            $('#btn-search').click(function () {
+                CreateTab();
+                //Criteria.Build放置到到这里，首次加载页面不处理Criteria
+                SPP.Utility.Criteria.Build();
+                $('#js_search_modal').modal('hide');
+                //点击Tab查询值
+                $('#myTab a').click(function (e) {
+                    //为日期、时段赋值
+                    var mydate = new Date();
+                    var myMonth = mydate.getMonth() + 1;
+                    var str = mydate.getFullYear() + '-' + myMonth + '-' + mydate.getDate();
+                    var activeTab = $(e.target).text();
+                    $("#js_datetime").text(str);
+                    $("#js_time_interval").text(activeTab);
+                    $("#js_tab_select_text").val(activeTab);
+                    if ($("#js_form_query").valid()) {
+                        PPCheckData.QueryPPCheckDatas();
+                        productStageLine();
+                        if (activeTab == "ALL") {
+                            $(".js-grid-edit").attr({ "disabled": "disabled" });
+                        }
+                    }
+                });
+                //#region 默认最后一个页签被选中
+                $('#myTab a:last').tab('show');
+                var mydate = new Date();
+                var str = $("#js_s_input_date").val();
+                var activeTab = $('#myTab a:last').text();
+                $("#js_datetime").text(str);
+                $("#js_time_interval").text(activeTab);
+                $("#js_tab_select_text").val(activeTab);
+                if ($("#js_form_query").valid()) {
+                    PPCheckData.QueryPPCheckDatas();
+                    productStageLine();
+                }
+                $(".js-grid-edit").removeAttr({ "disabled": "disabled" });
+                //#endregion
+            });
+            //保存资料按钮
+            $('#js_btn_save').click('click', function () {
+
+                //#region 检查功能厂是否存在
+                var $selectList = $('#js_ppcheckdata_datatable').find('.js-checkbox-item:checked');
+                var exportValue = $('#js_form_query').serializeObject();
+                var tabList = [];
+                $('#myTab a').each(function () {
+                    var tab = {};
+                    tab["Time_InterVal"] = $(this).text();
+                    tabList.push(tab);
+                });
+                exportValue.TabList = tabList;
+                $.post(PPCheckDataUrls.CheckFunPlantDataIsFull, { jsonList: JSON.stringify(exportValue) }, function (data) {
+                    if (data.length != 0) {
+                        //Show出对话框，并标注哪些功能厂未填写数据
+                        $('#myModal').modal('show');
+                        $("#js_funcplant_modal").text("功能厂【" + data + "】未上传数据。点击保存，系统将以0值填充，是否继续？" + '\n' + " PS:填0值之后，需要再次点保存资料，才能真正保存资料！");
+                    } else {
+                        checkGoodAndBad();
+                    }
+                });
+                //#endregion
+
+            });
+            //保存资料对话框中保存按钮
+            $('#js_btn_save_data').click('click', function () {
+                $('#myModal').modal('hide');
+                //将未填写数据的功能厂补充0值
+                var funPlantList = $("#js_funcplant_modal").text();
+                funPlantList = funPlantList.substring(funPlantList.indexOf('【') + 1, funPlantList.indexOf('】'));
+                var funList = funPlantList.split(',');
+                var customer = $("#js_s_input_customer").val();
+                var project = $("#js_s_input_project").val();
+                var Part_Types = $("#js_s_input_part_types").val();
+                var Product_Phase = $("#js_s_input_product_phase").val();
+                var Date = $("#js_s_input_date").val();
+                var Time = $('#myTab a:last').text();
+
+                var funPlantValue = {};
+                var funPlantInfo = [];
+                $.each(funList, function (i, val) {
+                    var sub = {};
+                    sub["Func_Plant"] = val;
+                    sub["Customer"] = customer;
+                    sub["Project"] = project;
+                    sub["Part_Types"] = Part_Types;
+                    sub["Product_Phase"] = Product_Phase;
+                    sub["Date"] = Date;
+                    sub["Time"] = Time;
+                    funPlantInfo.push(sub);
+                });
+                funPlantValue.ZeroList = funPlantInfo;
+
+                $.post(PPCheckDataUrls.FillZeroProductData, { jsonWithFunPlantInfo: JSON.stringify(funPlantValue) }, function (data) {
+                    if (data != "SUCCESS")
+                        SPP.Utility.MessageBox.error(data);
+                    RefreshDataView();
+                });
+
+            });
+            //导出按钮
+            $('#btn_export').click(function () {
+                var $selectList = $('#js_ppcheckdata_datatable').find('.js-checkbox-item:checked');
+                var exportValue = $('#js_form_query').serializeObject();
+                var tabList = [];
+                $('#myTab a').each(function () {
+                    var tab = {};
+                    tab["Time_InterVal"] = $(this).text();
+                    tabList.push(tab);
+                });
+                exportValue.TabList = tabList;
+
+                //var url = PPCheckDataUrls.DoExportPPCheckData;
+                //url += "?jsonExportList=" + JSON.stringify(exportValue);
+                //window.location.href = url;
+
+                $.post(PPCheckDataUrls.DoExportPPCheckData, { jsonExportList: JSON.stringify(exportValue), submitType: "AJAX", exportName: "PPCheckData" }, function (data) {
+                    if (data == "SUCCESS") {
+                        var url = PPCheckDataUrls.DoExportPPCheckData;
+                        url += "?jsonExportList=" + JSON.stringify(exportValue) + "&exportName=" + "PPCheckData";
+                        window.location.href = url;
+                    } else {
+                        SPP.Utility.MessageBox.error(data);
+                    }
+
+                });
+            });
+
+            //是否还有不匹配的数据
+            function checkGoodAndBad() {
+                //#region 检查是否还有红色的文本框
+                var dataTable = PPCheckData.GetTabDataTable();
+                var PPCheckValue = {};
+                var PPCheckList = [];
+                var IsCheckOK = true;
+                dataTable
+                    .rows()
+                    .every(function (rowIdx, tableLoop, rowLoop) {
+                        var sub = {};
+                        var row = $('#js_ppcheckdata_datatable>tbody>tr').eq(rowIdx);
+                        var Wip_Qty = $.trim(row.find('input[name=Wip_Qty]').val());
+                        var Product_UID = $.trim(row.find('input[name=Wip_Qty]').attr('id'));
+                        var Picking_Color = row.find('input[name=Picking_QTY]').css('background-color');
+                        var Good_Color = row.find('input[name=Good_QTY]').css('background-color');
+                        if (Picking_Color == "rgb(255, 0, 0)" || Good_Color == "rgb(255, 0, 0)") {
+                            IsCheckOK = false;
+                            return;
+                        }
+
+                        sub["Wip_Qty"] = Wip_Qty;
+                        sub["Product_UID"] = Product_UID;
+                        PPCheckList.push(sub);
+                    });
+                PPCheckValue.PPEditValue = PPCheckList;
+                if (!IsCheckOK) {
+                    SPP.Utility.MessageBox.error("部分领料与良品数据不匹配！");
+                    return;
+                }
+                $.post(PPCheckDataUrls.EditWIP, { jsonPPCheckList: JSON.stringify(PPCheckValue) }, function (data) {
+                    if (data == 'SUCCESS') {
+                        SPP.Utility.MessageBox.info("保存成功！");
+                        $(".wipqty").attr("disabled", true);
+                        //重新刷新数据区域
+                        RefreshDataView();
+                    } else {
+                        SPP.Utility.MessageBox.error(data);
+                    }
+                });
+                //#endregion
+            }
+
+            //是否还有数据没有Comfirm
+            function Is_Comfirm() {
+                var dataTable = PPCheckData.GetPPCheckDatatable();
+                var comfirmFlag = 0;
+                var rowCount = 0;
+                dataTable
+                    .rows()
+                    .every(function (rowIdx, tableLoop, rowLoop) {
+                        var row = $('#js_ppcheckdata_datatable>tbody>tr').eq(rowIdx);
+                        comfirmFlag = comfirmFlag + row.data('comfirm_flag');
+                        rowCount = rowCount + 1;
+                    });
+                if (rowCount == 0)
+                    return 1;
+                else
+                    return (rowCount - comfirmFlag);
+            }
+
+            //重新刷新数据区域
+            function RefreshDataView() {
+                $('#myTab a:last').tab('show');
+                var mydate = new Date();
+                var str = $("#js_s_input_date").val();
+                var activeTab = $('#myTab a:last').text();
+                $("#js_datetime").text(str);
+                $("#js_time_interval").text(activeTab);
+                $("#js_tab_select_text").val(activeTab);
+                if ($("#js_form_query").valid()) {
+                    PPCheckData.QueryPPCheckDatas();
+                    $(".js-grid-edit").removeAttr({ "disabled": "disabled" });
+                    //更新当前状态
+                    if (Is_Comfirm() != 0) {
+                        $("#js_save_status_div").attr("style", "background:red");
+                        $("#js_save_status").text("当前时段保存状态：未保存");
+                    } else {
+                        $("#js_save_status_div").removeAttr("style", "background:red");
+                        $("#js_save_status").text("");
+                    }
+                }
+            }
+
+            //清空选择条件
+            $('#js_search_modal').on('click', '.btn-clear', function () {
+                //如果没有特殊项的Clear，直接调用Clear方法
+                SPP.Utility.Criteria.Clear();
+                ////如果需要设定默认值，请在Clear内增加方法回调
+                //SPP.Utility.Criteria.Clear(function () {
+                //    $('#js_s_radio_valid').prop('checked', true);
+                //});
+            });
+            //离开页面时，当未确认结果不能离开该页面
+            window.onbeforeunload = function (e) {
+                if (Is_Comfirm() != 0)
+                    // SPP.Utility.MessageBox.error("内容未保存，确认离开页面？！");
+                    return (e || window.event).returnValue = '内容未保存，确认离开页面？！';
+                //return (e || window.event).returnValue = '内容未保存，确认离开页面？！';
+            }
+            //发送邮件
+            $("#js_send_email").click(function () {
+                $.post(PPCheckDataUrls.SendEmail, function (data) {
+                    if (data != "SUCCESS") {
+                        SPP.Utility.MessageBox.error(data);
+                    }
+                });
+            });
+
+            $('body').on('click', '.js-grid-edit', function () {
+                $("#js_hidden_product_uid").val($(this).data('id'));
+                $("#js_input_now_wip").val($(this).data('wip'));
+            });
+
+            $("#js_btn_save_edit_wip").click('click', function () {
+                var product_uid = $("#js_hidden_product_uid").val();
+                var wip_qty = 0;
+                var wip_old = $("#js_input_now_wip").val();
+                var wip_add = $("#js_input_add_wip").val();
+                var comment = $("#js_input_comment").val();
+                if ($("#js_input_comment").val() == "") {
+                    SPP.Utility.MessageBox.error("请输入修改WIP的原因！");
+                    return;
+                }
+                if (parseInt($("#js_input_add_wip").val()))
+                    wip_qty = parseInt(wip_old) + parseInt(wip_add);
+                else {
+                    SPP.Utility.MessageBox.error("请输入整数");
+                    return;
+                }
+                $.post(PPCheckDataUrls.EditWIPView, { "product_uid": product_uid, "wip_qty": wip_qty, "wip_old": wip_old, "wip_add": wip_add, "comment": comment }, function (data) {
+                    if (data == 'SUCCESS') {
+                        SPP.Utility.MessageBox.info("保存成功！");
+                        RefreshDataView();
+                    } else {
+                        SPP.Utility.MessageBox.error(data);
+                    }
+                });
+            });
+        });
+    </script>
+}

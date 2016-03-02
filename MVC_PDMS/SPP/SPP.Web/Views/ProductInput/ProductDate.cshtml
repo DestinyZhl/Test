@@ -1,0 +1,850 @@
+﻿
+@{
+    ViewBag.Title = "基础数据维护页面";
+}
+<!-- Content Header (Page header) -->
+<section class="content-header portal-content-header">
+    <h1>
+        基础数据维护页面
+        <small></small>
+    </h1>
+</section>
+
+
+<!-- Stack the columns on mobile by making one full-width and the other half-width -->
+<!-- Main content -->
+<section class="content portal-content">
+
+    <!--次標題 與 搜尋-->
+    <div class="row">
+        <!--次標題與Search keyword-->
+        <div class="col-md-12 col-lg-9">
+            <h4 class="margin-td-5" id="js_search_keywords"></h4>
+        </div><!-- /col-次標題與Search keyword -->
+        <!--col-右方搜尋與功能按鈕列-->
+        <div class="col-md-12 search-field col-lg-3">
+
+            <a class="btn btn-default btn-lg" data-toggle="modal" data-target="#js_search_modal" id="btn-search"><i class="fa fa-search"></i>查询</a>
+
+        </div><!-- /col-右方搜尋與功能按鈕列-->
+    </div><!--/次標題 與 搜尋-->
+    <hr class="hr-custom">
+
+    <!--row Search Keyword collapse-->
+    <div class="row">
+        <div class="col-xs-12" id="js_criteria_alert_cnt">
+        </div>
+    </div> <!--/row Search Keyword collapse-->
+    <!--內容 表格列-->
+    <div class="row">
+        <!--表格-->
+        <div class="col-md-12 table-container">
+            <table class="table table-striped table-hover table-condensed nowrap" id="js_plant_datatable">
+                <thead>
+                    <tr>
+                        <th class="table-col-checkbox nosort">
+                            <input type="checkbox" class="js-checkbox-all" />
+                        </th>
+                        <th class="table-col-seq nosort">序号</th>
+                        <th class="table-col-action nosort">操作</th>
+
+                        <th>制程序号</th>
+                        <th>制程</th>
+                        <th>颜色</th>
+                        <th>领料数</th>
+                        <th>仓库领料数</th>
+
+                        <th>良品数</th>
+                        <th>调机试制数</th>
+                        <th>NG数</th>
+                        <th>入库数</th>
+                        <th style="display:none;">Place</th>
+                        <th style="display:none;">Prouct_Plan</th>
+                        <th style="display:none;">Product_Stage</th>
+                        <th style="display:none;">Target_Yield</th>
+                        <th style="display:none;">Time_Interval</th>
+                        <th style="display:none;">Product_Date</th>
+                        <th style="display:none;">Customer</th>
+                        <th style="display:none;">Project</th>
+                        <th style="display:none;">Part_Types</th>
+                        <th style="display:none;">Func_Plant</th>
+                        <th style="display:none;">FuncPlant_Manager</th>
+                        <th style="display:none;">Product_Phase</th>
+
+                        <th style="display:none;">FlowChart_Master_UID</th>
+                        <th style="display:none;">FlowcChart_Version</th>
+                        <th style="display:none;">Material_No</th>
+                       
+                    </tr>
+                </thead>
+
+            </table>
+            <div id="page" class="row" style="visibility: hidden;"></div>
+
+        </div><!--/表格-->
+    </div><!-- / 內容 表格列 -->
+    <div class="bottom_btn">
+        <div class="col-xs-12" style="padding-top:20px">
+            <div class="col-xs-8"></div>
+            <div class="col-xs-2">
+                <button type="button" class="btn btn-default btn-clear">取消</button>
+
+            </div>
+            <div class="col-xs-2">
+                <button id="btn-submit-inner" type="button" class="btn btn-primary btn-query">提交</button>
+            </div>
+        </div><!-- /col-次標題與Search keyword -->
+
+    </div>
+
+</section><!-- /.content -->
+@section ViewModals{
+    <div class="modal fade" id="js_search_modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h2 class="modal-title">查询</h2>
+                </div>
+                <div class="modal-body form-horizontal">
+                    <div class="row">
+                        <form id="js_form_query" data-need-validate="true">
+
+                            <div class="form-group">
+
+                                <label class="col-xs-3 control-label" for="js_input_func_plant">所属功能厂</label>
+                                <div class="col-xs-3">
+                                    <input input="input" class="form-control input-xs" id="js_input_func_plant" name="Func_Plant"
+                                           data-rule-maxlength="50" data-msg-maxlength="Please enter no more than {0} characters in Function Description.">
+                                </div>
+                                <label class="col-xs-2 control-label" for="js_s_select_flowchart_name">流程名</label>
+                                <div class="col-xs-3">
+
+                                    <input type="text" name="country" id="autocomplete-ajax" class="form-control input-xs" />
+                                    @*<input type="text" name="country" id="autocomplete-ajax-x" class="form-control input-xs" disabled="disabled" style="visibility:hidden" />*@
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="col-xs-3 control-label" for="js_s_input_plant_customer">客户</label>
+                                <div class="col-xs-3">
+                                    <input type="text" name="Customer" class="form-control input-xs" id="js_s_input_plant_customer">
+                                </div>
+
+
+                                <label class="col-xs-2 control-label" for="js_s_input_project">专案</label>
+                                <div class="col-xs-3">
+
+                                    <input type="text" name="Project" class="form-control input-xs" id="js_s_input_project">
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+
+                                <label class="col-xs-3 control-label" for="js_s_input_part_types">部件</label>
+                                <div class="col-xs-3">
+                                    <input type="text" name="Part_Types" class="form-control input-xs" id="js_s_input_part_types">
+                                </div>
+                                <label class="col-xs-2 control-label" for="js_s_input_Product_Phase">生产阶段</label>
+                                <div class="col-xs-3">
+
+                                    <input type="text" name="Product_Phase" class="form-control input-xs" id="js_s_input_Product_Phase">
+
+                                </div>
+
+                            </div>
+                            <div class="form-group" style="padding-top:10px;">
+
+                                <label class="col-xs-3 control-label" for="js_s_input_reference_date">日期选择</label>
+                                <div class="col-xs-3">
+                                    <input type="text" name="Date" class="form-control input-xs date" id="js_s_input_reference_date">
+                                </div>
+                                <label class="col-xs-2 control-label" for="js_s_select_time">时段选择</label>
+                                <div class="col-xs-3">
+                                    <input type="text" name="Time" class="form-control input-xs" id="js_s_select_time">
+
+                                </div>
+
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-clear">Clear</button>
+                    <button id="btn-search-inner" type="button" class="btn btn-primary btn-query">Query</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="js_edit_modal" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">数据修改</h4>
+                </div>
+
+                <form id="js_form_data_edit" class="form-horizontal clearfix">
+                    <div class="modal-body form-horizontal">
+                        <div class="row">
+                            <div class="form-group col-xs-12 col-md-6">
+                                <label class="col-xs-5 control-label" for="s_input_Picking_QTY">领料数</label>
+                                <input type="hidden" id="Product_UID" name="Product_UID" />
+
+                                <div class="col-xs-7">
+                                    <input type="text" class="form-control input-xs" id="s_input_Picking_QTY" name="Picking_QTY">
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6">
+                                <label class="col-xs-5 control-label" for="s_input_WH_Picking_QTY">仓库领料数</label>
+                                <div class="col-xs-7">
+
+                                    <input type="text" class="form-control input-xs" id="s_input_WH_Picking_QTY" name="WH_Picking_QTY">
+
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6 ">
+                                <label class="col-xs-5 control-label" for="s_input_Good_QTY">良品数</label>
+                                <div class="col-xs-7">
+                                    <input type="text" class="form-control input-xs required" id="s_input_Good_QTY" name="Good_QTY">
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6 ">
+                                <label class="col-xs-5 control-label" for="s_input_Adjust_QTY">调制试机数</label>
+                                <div class="col-xs-7">
+                                    <input type="text" class="form-control input-xs " id="s_input_Adjust_QTY" name="Adjust_QTY">
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6 ">
+                                <label class="col-xs-5 control-label" for="s_input_NG_QTY">NG数</label>
+                                <div class="col-xs-7">
+                                    <input type="text" class="form-control input-xs " id="s_input_NG_QTY" name="NG_QTY">
+                                </div>
+                            </div>
+                            <div class="form-group col-xs-12 col-md-6 ">
+                                <label class="col-xs-5 control-label" for="s_input_WH_QTY">入库数</label>
+                                <div class="col-xs-7">
+                                    <input type="text" class="form-control input-xs " id="s_input_WH_QTY" name="WH_QTY">
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="isEdit" value="false" />
+
+
+                            <div class="col-xs-12"><ul class="list-group validate-error"></ul></div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default btn-xs" data-dismiss="modal"><i class="fa fa-times"></i> 取消</button>
+
+                        <button type="button" class="btn btn-primary btn-xs" id="js_btn_save_edit_ReportBom"><i class="fa fa-save"></i>保存</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+}
+<style>
+    .autocomplete-suggestions {
+        border: 1px solid #999;
+        background: #FFF;
+        overflow: auto;
+    }
+
+    .autocomplete-suggestion {
+        padding: 2px 5px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .autocomplete-selected {
+        background: #F0F0F0;
+    }
+
+    .autocomplete-suggestions strong {
+        font-weight: normal;
+        color: #3399FF;
+    }
+
+    .popover {
+        max-width: 500px;
+    }
+
+    .popover-content .btn + .btn {
+        margin-left: 2px;
+    }
+</style>
+@section ViewScripts{
+    <script type="text/javascript">
+        $(function () {
+            var subDatatable = null;
+            //获取当前功能厂
+            var getCurrentUid = function () {
+                url = ProductData.urls.GetCurrentFuncPlant;
+                $.post(url, function (data) {
+
+                    $('#js_input_func_plant').val(data);
+                });
+            }
+            //判断是否是新建，不是新建的时候打开这个画面数据为不可用，点击编辑后再改为可用
+            var IsNew = function () {
+
+                var flag = true;
+
+
+                //查询数据库判断是否有该时段该功能厂的数据，若有，将标志变量改为fals
+
+            }
+
+            //查询Product_Input表数据，将数据有错的在页面上标注出来
+            var checkAbnomalDate = function () {
+                url = ProductData.urls.GetWarringData;
+                $.post(url, function (data) {
+
+                    $('#js_input_func_plant').val(data);
+                });
+            }
+            var TransferDate = function (assigntime) {
+                var reg = new RegExp('-', 'g');
+                assigntime = assigntime.replace(reg, '/');//正则替换
+                assigntime = new Date(parseInt(Date.parse(assigntime), 10));
+                return assigntime;
+            }
+            //#region 预设reference_date&&query_types
+            var myDate = new Date();
+            $("#js_s_input_reference_date").val(myDate.toLocaleDateString());
+            $("input[name='query_types']").eq(0).click();
+            //#endregion
+            var ProductData = (function () {
+                var urls =
+                    {
+                        GetWarringData: '@Url.Action("GetWarringData", "ProductInput")',
+                        QueryProductData: '@Url.Action("QueryProductDatas", "ProductInput")',
+                        QueryProductSingelData: '@Url.Action("QueryProductData", "ProductInput")',
+                        ClearProduct: '@Url.Action("ClearProductData", "ProductInput")',
+                        ModifyProduct: '@Url.Action("ModifyProductData", "ProductInput")',
+                        GetCurrentFuncPlant: '@Url.Action("getCurrentPlantName", "ProductInput")',
+                        SaveDatas: '@Url.Action("SaveDatas", "ProductInput")',
+                    };
+                var columns = [
+                    {
+
+                        createdCell: function (td, cellData, rowData, row, col) {
+                            $(td).html('<input type="checkbox" name="cktrans" class="js-checkbox-item" value="' + rowData.OrganizationBOM_UID + '">')
+                                 .addClass('table-col-checkbox');
+                        },
+                        className: "text-center"
+                    },
+                 
+
+                  {
+                      data: null,
+                      className: "table-col-seq"
+                  },
+                  {
+                      createdCell: function (td, cellData, rowData, row, col) {
+                          if (rowData.Product_UID == undefined)
+                              $(td).html('<button class="btn btn-default btn-xs" rel="action-popover">' +
+                                              '<i class="fa fa-reorder text-info"></i>' +
+                                          '</button>' +
+                                          '<div class="hidden popover-content">' +
+                                              '<button type="button"name="grid_edit" class="btn btn-primary btn-xs js-grid-edit" >Edit</button>' +
+                                          '</div>');
+                          else
+                              $(td).html('<button class="btn btn-default btn-xs" rel="action-popover">' +
+                                                                         '<i class="fa fa-reorder text-info"></i>' +
+                                                                     '</button>' +
+                                                                     '<div class="hidden popover-content">' +
+                                                                         '<button type="button"name="grid_edit" class="btn btn-primary btn-xs js-grid-edit" data-id="' + rowData.Product_UID + '">Edit</button>' +
+                                                                     '</div>');
+                      },
+                      className: "text-center min-col-xs"
+                  },
+
+                   {
+                       createdCell: function (td, cellData, rowData, row, col) {
+
+                           $(td).html('<input type="text"class="form-control input-xs"  disabled="disabled"  name="Process_Seq"  value="' + rowData.Process_Seq + '">');
+
+                       },
+                       className: "text-center"
+                   },
+                    {
+                        createdCell: function (td, cellData, rowData, row, col) {
+
+                            $(td).html('<input type="text"class="form-control input-xs"  disabled="disabled"  name="Process"  value="' + rowData.Process + '">');
+
+                        },
+                        className: "text-center"
+                    },
+                    {
+                        createdCell: function (td, cellData, rowData, row, col) {
+
+                            $(td).html('<input type="text"class="form-control input-xs"  disabled="disabled"  name="Color"  value="' + rowData.Color + '">');
+
+                        },
+                        className: "text-center"
+                    },
+
+            {
+                createdCell: function (td, cellData, rowData, row, col) {
+                    if (rowData.Picking_QTY == 0)
+                        $(td).html('<input type="text"class="form-control input-xs"   name="Picking_QTY"  value="' + "" + '">');
+                    if (rowData.Picking_QTY != 0 && rowData.Picking_MismatchFlag == undefined)
+                        $(td).html('<input type="text"class="form-control input-xs" disabled="disabled"  name="Picking_QTY"  value="' + rowData.Picking_QTY + '">');
+                    if (rowData.Picking_MismatchFlag != undefined)
+                        $(td).html('<input type="text"class="form-control input-xs" style="background-color: red;" disabled="disabled"  name="Picking_QTY"  value="' + rowData.Picking_QTY + '">');
+
+                },
+                className: "text-center min-col-lg"
+            },
+
+
+                {
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        if (rowData.WH_Picking_QTY == 0)
+                            $(td).html('  <input type="text" class="form-control input-xs"  name="WH_Picking_QTY"  value="' + "" + '">');
+                        else
+                            $(td).html('  <input type="text" class="form-control input-xs" disabled="disabled" l name="WH_Picking_QTY"  value="' + rowData.WH_Picking_QTY + '">');
+                    },
+                    className: "text-center"
+                },
+
+                  {
+                      createdCell: function (td, cellData, rowData, row, col) {
+                          if (rowData.Good_QTY == 0)
+                              $(td).html('<input type="text"class="form-control input-xs"   name="Good_QTY"  value="' + "" + '">');
+                          if (rowData.Good_QTY != 0 && rowData.Good_MismatchFlag == undefined)
+                              $(td).html('<input type="text"class="form-control input-xs" disabled="disabled"  name="Good_QTY"  value="' + rowData.Good_QTY + '">');
+                          if (rowData.Good_MismatchFlag != undefined)
+                              $(td).html('<input type="text"class="form-control input-xs" style="background-color: red;" disabled="disabled"  name="Good_QTY"  value="' + rowData.Good_QTY + '">');
+
+                      },
+                      className: "text-center min-col-lg"
+                  },
+
+                {
+                    createdCell: function (td, cellData, rowData, row, col) {
+                        if (rowData.Adjust_QTY == 0)
+                            $(td).html('  <input type="text" class="form-control input-xs"  name="Adjust_QTY"  value="' + "" + '">');
+                        else
+                            $(td).html('  <input type="text" class="form-control input-xs" disabled="disabled" name="Adjust_QTY"  value="' + rowData.Adjust_QTY + '">');
+                    },
+                    className: "text-center"
+                },
+    {
+        createdCell: function (td, cellData, rowData, row, col) {
+            if (rowData.NG_QTY == 0)
+                $(td).html('  <input type="text" class="form-control input-xs"  name="NG_QTY"  value="' + "" + '">');
+            else
+                $(td).html('  <input type="text" class="form-control input-xs" disabled="disabled"   name="NG_QTY"  value="' + rowData.NG_QTY + '">');
+
+        },
+        className: "text-center"
+    },
+    {
+        createdCell: function (td, cellData, rowData, row, col) {
+            if (rowData.WH_QTY == 0)
+                $(td).html('  <input type="text" class="form-control input-xs"  name="WH_QTY"  value="' + "" + '">');
+            else
+                $(td).html('  <input type="text" class="form-control input-xs" disabled="disabled"  name="WH_QTY"  value="' + rowData.WH_QTY + '">');
+        },
+        className: "text-center"
+    },
+      {
+          createdCell: function (td, cellData, rowData, row, col) {
+
+              $(td).html('  <input type="text" class="form-control input-xs" style="display:none;"  name="Product_Stage"  value="' + rowData.Product_Stage + '">');
+          },
+          className: "text-center"
+      },
+        {
+            createdCell: function (td, cellData, rowData, row, col) {
+
+                $(td).html('  <input type="text" class="form-control input-xs" style="display:none;"  name="Place"  value="' + rowData.Place + '">');
+            },
+            className: "text-center"
+        },
+          {
+              createdCell: function (td, cellData, rowData, row, col) {
+
+                  $(td).html('  <input type="text" class="form-control input-xs" style="display:none;"  name="Prouct_Plan"  value="' + rowData.Prouct_Plan + '">');
+              },
+              className: "text-center"
+          }
+          ,
+            {
+                createdCell: function (td, cellData, rowData, row, col) {
+
+                    $(td).html('  <input type="text" class="form-control input-xs" style="display:none;"  name="Target_Yield"  value="' + rowData.Target_Yield + '">');
+                },
+                className: "text-center"
+            }
+                ,
+            {
+                createdCell: function (td, cellData, rowData, row, col) {
+
+                    $(td).html('  <input type="text" class="form-control input-xs" style="display:none;"  name="Time_Interval"  value="' + rowData.Time_Interval + '">');
+                },
+                className: "text-center"
+            }
+                ,
+            {
+                createdCell: function (td, cellData, rowData, row, col) {
+
+                    $(td).html('  <input type="text" class="form-control input-xs" style="display:none;"  name="Product_Date"  value="' + rowData.Product_Date + '">');
+                },
+                className: "text-center"
+            }
+                ,
+            {
+                createdCell: function (td, cellData, rowData, row, col) {
+
+                    $(td).html('  <input type="text" class="form-control input-xs" style="display:none;"  name="Customer"  value="' + rowData.Customer + '">');
+                },
+                className: "text-center"
+            }
+              ,
+            {
+                createdCell: function (td, cellData, rowData, row, col) {
+
+                    $(td).html('  <input type="text" class="form-control input-xs" style="display:none;"  name="Project"  value="' + rowData.Project + '">');
+                },
+                className: "text-center"
+            }
+             ,
+            {
+                createdCell: function (td, cellData, rowData, row, col) {
+
+                    $(td).html('  <input type="text" class="form-control input-xs" style="display:none;"  name="Part_Types"  value="' + rowData.Part_Types + '">');
+                },
+                className: "text-center"
+            },
+                {
+                createdCell: function (td, cellData, rowData, row, col) {
+
+                    $(td).html('  <input type="text" class="form-control input-xs" style="display:none;"  name="FunPlant"  value="' + rowData.FunPlant + '">');
+                },
+                className: "text-center"
+            },
+            {
+            createdCell: function (td, cellData, rowData, row, col) {
+
+                $(td).html('  <input type="text" class="form-control input-xs" style="display:none;"  name="FunPlant_Manager"  value="' + rowData.FunPlant_Manager + '">');
+            },
+            className: "text-center"
+            },
+              {
+                  createdCell: function (td, cellData, rowData, row, col) {
+
+                      $(td).html('  <input type="text" class="form-control input-xs" style="display:none;"  name="Product_Phase"  value="' + rowData.Product_Phase + '">');
+                  },
+                  className: "text-center"
+              },
+              {
+                  createdCell: function (td, cellData, rowData, row, col) {
+
+                      $(td).html('  <input type="text" class="form-control input-xs" style="display:none;"  name="FlowChart_Master_UID"  value="' + rowData.FlowChart_Master_UID + '">');
+                  },
+                  className: "text-center"
+              },
+              {
+                  createdCell: function (td, cellData, rowData, row, col) {
+
+                      $(td).html('  <input type="text" class="form-control input-xs" style="display:none;"  name="FlowChart_Version"  value="' + rowData.FlowChart_Version + '">');
+                  },
+                  className: "text-center"
+              },
+              {
+                  createdCell: function (td, cellData, rowData, row, col) {
+
+                      $(td).html('  <input type="text" class="form-control input-xs" style="display:none;"  name="Material_No"  value="' + rowData.Material_No + '">');
+                  },
+                  className: "text-center"
+              },
+             
+                ];
+
+                var _getParams = function () {
+                    return $('#js_form_query').serialize().replace(/\+/g, " ");
+                };
+                var _queryPlants = function (firstLoad) {
+
+                    var config = {
+                        pageId: "#page",
+                        tableId: "#js_plant_datatable",
+                        remoteUrl: urls.QueryProductData,
+                        searchParams: _getParams(),
+                        tableOptions: {
+                            columns: columns
+                        }
+                    };
+
+                    var config2 = {
+                        pageId: "#page",
+                        tableId: "#js_plant_datatable",
+
+                        tableOptions: {
+                            columns: columns
+                        }
+                    };
+
+                    if (!firstLoad) {
+                        $('#page').page('destroy');
+                        //Criteria.Build放置到到这里，首次加载页面不处理Criteria
+                        SPP.Utility.Criteria.Build();
+                        SPP.Utility.Pages.Set(config);
+                    }
+                    else
+                        SPP.Utility.Pages.Set(config2);
+                    //_setQueryCriteria();
+                };
+
+                return {
+                    urls: urls,
+                    Init: function () {
+                        _queryPlants(true);
+
+                    },
+                    QueryProductData: function () {
+                        _queryPlants(false);
+                    }
+                    ,
+                    GetSubDatatable: function () {
+
+                        if (subDatatable == null) {
+
+                            subDatatable = $('#js_plant_datatable').DataTable({
+                                paging: false,
+                                searching: false,
+                                ordering: false,
+                                retrieve: true,
+                                columns: columns,
+                            });
+                        }
+                        return subDatatable;
+                    },
+                }
+
+            })();
+            ProductData.Init();
+
+
+
+            //流程名选择事件
+            $('#autocomplete-ajax').on("blur", function () {
+
+                $('#js_form_query').find('input[name=Customer]').val('Apple');
+                $('#js_form_query').find('input[name=Project]').val('BC41');
+                $('#js_form_query').find('input[name=Part_Types]').val('BC41');
+                $('#js_form_query').find('input[name=Product_Phase]').val('MP');
+
+            });
+
+
+            $('#btn-search-inner').click(function () {
+                if ($("#js_form_query").valid()) {
+                    ProductData.QueryProductData();
+                    $('#js_search_modal').modal('hide');
+                }
+            });
+
+            $('#btn-export').click(function () {
+                var $selectList = $('#js_plant_datatable').find('.js-checkbox-item:checked');
+                var len = $selectList.length;
+                if (len == 0) {
+                    alert('No dates');
+                } else {
+                    var uuids = $.map($selectList, function (row) {
+                        return row.value;
+                    });
+                    var url = '@Url.Action("DoExportOrgBom", "Settings")';
+                    url += "?uuids=" + uuids.toString();
+                    window.location.href = url;
+                }
+            });
+
+
+            //clear query conditions in search modal
+            $('#js_search_modal').on('click', '.btn-clear', function () {
+                $('#autocomplete-ajax').val('');
+            });
+            //给当前时间段赋值
+            var setTimeVal = function () {
+                var d = new Date();
+                var h = d.getHours();
+                var m = d.getMinutes();
+                if ((h == 0 & m > 30) || h == 1 || (h == 2 & m <= 30)) {
+                    $("#js_s_select_time").val('00:30~02:30');
+                }
+                if ((h == 2 & m > 30) || h == 3 || (h == 4 & m <= 30)) {
+                    $("#js_s_select_time").val('02:30~04:30');
+                }
+                if ((h == 4 & m > 30) || h == 5 || (h == 6 & m <= 30)) {
+                    $("#js_s_select_time").val('04:30~06:30');
+                }
+                if ((h == 6 & m > 30) || h == 7 || (h == 8 & m <= 30)) {
+                    $("#js_s_select_time").val('06:30~08:30');
+                }
+                if ((h == 8 & m > 30) || h == 9 || (h == 10 & m <= 30)) {
+                    $("#js_s_select_time").val('08:30~10:30');
+                }
+                if ((h == 10 & m > 30) || h == 11 || (h == 12 & m <= 30)) {
+                    $("#js_s_select_time").val('10:30~12:30');
+                }
+                if ((h == 12 & m > 30) || h == 13 || (h == 14 & m <= 30)) {
+                    $("#js_s_select_time").val('12:30~14:30');
+                }
+                if ((h == 14 & m > 30) || h == 15 || (h == 16 & m <= 30)) {
+                    $("#js_s_select_time").val('14:30~16:30');
+                }
+                if ((h == 16 & m > 30) || h == 17 || (h == 18 & m <= 30)) {
+                    $("#js_s_select_time").val('16:30~18:30');
+                }
+                if ((h == 18 & m > 30) || h == 19 || (h == 20 & m <= 30)) {
+                    $("#js_s_select_time").val('18:30~20:30');
+                }
+                if ((h == 20 & m > 30) || h == 21 || (h == 22 & m <= 30)) {
+                    $("#js_s_select_time").val('20:30~23:30');
+                }
+                if ((h == 22 & m > 30) || h == 23 || (h == 0 & m <= 30)) {
+                    $("#js_s_select_time").val('22:30~00:30');
+                }
+            }
+
+            //查询按钮弹出时候执行
+            $('#js_search_modal').on('show.bs.modal', function (event) {
+                //getCountry();
+                setTimeVal();
+                getCurrentUid();
+            })
+
+
+
+            //保存资料按钮
+            $('#btn-submit-inner').click('click', function () {
+
+                var dataTable = ProductData.GetSubDatatable();
+                var PPCheckValue = {};
+                var PPCheckList = [];
+                var IsCheckOK = true;
+                var flag = true;
+                dataTable
+                    .rows()
+                    .every(function (rowIdx, tableLoop, rowLoop) {
+                        var sub = {};
+                        var row = $('#js_plant_datatable>tbody>tr').eq(rowIdx);
+                        var Process_Seq = $.trim(row.find('input[name=Process_Seq]').val());
+                        var Process = $.trim(row.find('input[name=Process]').val());
+                        var Color = $.trim(row.find('input[name=Color]').val());
+                        var WH_Picking_QTY = $.trim(row.find('input[name=WH_Picking_QTY]').val());
+                        var Picking_QTY = $.trim(row.find('input[name=Picking_QTY]').val());
+                        var Good_QTY = $.trim(row.find('input[name=Good_QTY]').val());
+                        var Adjust_QTY = $.trim(row.find('input[name=Adjust_QTY]').val());
+                        var NG_QTY = $.trim(row.find('input[name=NG_QTY]').val());
+                        var WH_QTY = $.trim(row.find('input[name=WH_QTY]').val());
+                        var Place = $.trim(row.find('input[name=Place]').val());
+                        var Prouct_Plan = $.trim(row.find('input[name=Prouct_Plan]').val());
+                        var Product_Stage = $.trim(row.find('input[name=Product_Stage]').val());
+                        var Target_Yield = $.trim(row.find('input[name=Target_Yield]').val());
+                        ///需要修改
+                        sub["Wip_Qty"] = 0;
+                        sub["Is_Comfirm"] = false;
+                        sub["Product_Date"] = $.trim(row.find('input[name=Product_Date]').val());
+                        sub["Time_Interval"] = $.trim(row.find('input[name=Time_Interval]').val());
+                        sub["Customer"] = $.trim(row.find('input[name=Customer]').val());
+                        sub["Project"] = $.trim(row.find('input[name=Project]').val());
+                        sub["Part_Types"] = $.trim(row.find('input[name=Part_Types]').val());
+                        sub["FunPlant"] = $.trim(row.find('input[name=FunPlant]').val());
+                        sub["FunPlant_Manager"] = $.trim(row.find('input[name=FunPlant_Manager]').val());
+                        sub["Product_Phase"] = $.trim(row.find('input[name=Product_Phase]').val());
+                        sub["Process_Seq"] = $.trim(row.find('input[name=Process_Seq]').val());
+                        sub["Place"] = Place;
+                        sub["Process"] = Process;
+                        sub["FlowChart_Master_UID"] = $.trim(row.find('input[name=FlowChart_Master_UID]').val());
+                        sub["FlowChart_Version"] = $.trim(row.find('input[name=FlowChart_Version]').val());
+                        sub["Color"] = Color;
+                        sub["Prouct_Plan"] = Prouct_Plan;
+                        sub["Product_Stage"] = Product_Stage;
+                        sub["Target_Yield"] = Target_Yield;
+                        sub["Good_QTY"] = Good_QTY;
+
+                        sub["Picking_QTY"] = Picking_QTY;
+                        sub["WH_Picking_QTY"] = WH_Picking_QTY;
+                        sub["NG_QTY"] = NG_QTY;
+                        sub["WH_QTY"] = WH_QTY;
+                        sub["Adjust_QTY"] = Adjust_QTY;
+                        sub["Creator_UID"] = 90014;
+                        sub["Create_Date"] = new Date().toLocaleDateString();
+                        sub["Modified_UID"] = 90014;
+                        sub["Modified_Date"] = new Date().toLocaleDateString();
+                        PPCheckList.push(sub);
+                    });
+                PPCheckValue.ProductLists = PPCheckList;
+
+                $.post(ProductData.urls.SaveDatas, { jsonWithProduct: JSON.stringify(PPCheckValue) }, function (data) {
+                    if (data == 'SUCCESS') {
+                        SPP.Utility.MessageBox.info("保存成功！");
+
+                    } else {
+                        SPP.Utility.MessageBox.error(data);
+                    }
+                });
+            });
+
+            //新增修改Data按钮
+            $("#js_btn_save_edit_ReportBom").click('click', function () {
+
+                var submitJson = $('#js_form_data_edit').serializeObject();
+                $.post(ProductData.urls.ModifyProduct, { jsonWithProduct: JSON.stringify(submitJson) }, function (data) {
+                    if (data == 'SUCCESS') {
+                        SPP.Utility.MessageBox.info("修改成功");
+                    } else {
+                        SPP.Utility.MessageBox.error(data);
+                    }
+                });
+
+
+            });
+            //点击编辑的时触发事件
+            $('body').on('click', '.js-grid-edit', function () {
+
+                var uuid = $(this).attr('data-id'),
+                    url = ProductData.urls.QueryProductSingelData;
+
+                $.post(url, { uuid: uuid }, function (data) {
+
+                    $('#Product_UID').val(uuid);
+                    $('#js_edit_modal').find('input[name=Picking_QTY]').val(data.Picking_QTY);
+                    $('#js_edit_modal').find('input[name=WH_Picking_QTY]').val(data.WH_Picking_QTY);
+                    $('#js_edit_modal').find('input[name=Good_QTY]').val(data.Good_QTY);
+                    $('#js_edit_modal').find('input[name=Adjust_QTY]').val(data.Adjust_QTY);
+                    $('#js_edit_modal').find('input[name=NG_QTY]').val(data.NG_QTY);
+
+                    $('#js_edit_modal').find('input[name=WH_QTY]').val(data.WH_QTY);
+
+                    $('#js_edit_modal').modal('show');
+                });
+
+
+
+            });
+
+
+
+
+
+        });
+    </script>
+    @*<script src="~/Scripts/plugins/JqueryAutoComplete/jquery.mockjax.js"></script>
+            <script src="~/Scripts/plugins/JqueryAutoComplete/jquery.autocomplete.js"></script>
+            <script src="~/Scripts/plugins/JqueryAutoComplete/countries.js"></script>
+        <script src="~/Scripts/plugins/JqueryAutoComplete/demo.js"></script>*@
+}

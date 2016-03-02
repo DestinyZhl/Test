@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="73ca81bab53a486ea3d07b4b31f97bc3" Name="Diagram1">
+        <EntityTypeShape EntityType="SPPEntityModel.Enumeration" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.FlowChart_Detail" Width="1.5" PointX="7.5" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.FlowChart_Detail_Temp" Width="1.5" PointX="7.5" PointY="50.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.FlowChart_MgData" Width="1.5" PointX="9.75" PointY="36.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.FlowChart_MgData_Temp" Width="1.5" PointX="9.75" PointY="39.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.Product_ErrorInfo" Width="1.5" PointX="7.5" PointY="41.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.Product_Input" Width="1.5" PointX="5.25" PointY="42.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.Product_Input_History" Width="1.5" PointX="5.25" PointY="49.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.Project_Users_Group" Width="1.5" PointX="6" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_BU_D" Width="1.5" PointX="5.25" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_BU_M" Width="1.5" PointX="3" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_Function" Width="1.5" PointX="3" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_Function_Plant" Width="1.5" PointX="5.25" PointY="37.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_FunctionSub" Width="1.5" PointX="8.25" PointY="26.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_Organization" Width="1.5" PointX="3" PointY="31.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_OrganizationBOM" Width="1.5" PointX="8.25" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_Plant" Width="1.5" PointX="3" PointY="37.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_Project" Width="1.5" PointX="7.5" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_Role" Width="1.5" PointX="3" PointY="44" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_Role_Function" Width="1.5" PointX="5.25" PointY="33.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_Role_FunctionSub" Width="1.5" PointX="13.5" PointY="29.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_User_Business_Group" Width="1.5" PointX="10.5" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_User_FunPlant" Width="1.5" PointX="10.5" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_User_Plant" Width="1.5" PointX="11.25" PointY="28.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_User_Role" Width="1.5" PointX="12.25" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_UserOrg" Width="1.5" PointX="8.25" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.System_Users" Width="1.5" PointX="0.75" PointY="25.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPPEntityModel.Warning_List" Width="1.5" PointX="7.5" PointY="47" IsExpanded="true" />
+        <AssociationConnector Association="SPPEntityModel.FK_FLOWCHAR_REFERENCE_FLOWCHAR47" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_FLOWCHAR_REFERENCE_FLOWCHAR6" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_FLOWCHART_DETAIL_REF_SYSTEM_FUNCTION_PLANT" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_FLOWCHAR_REFERENCE_FLOWCHAR43" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_PRODUCT__REFERENCE_PRODUCT_a" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_PRODUCT__REFERENCE_PRODUCT_d" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_PRODUCT__REFERENCE_SYSTEM_Fb" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_PRODUCT__REFERENCE_SYSTEM_Fc" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_PROJECT_USERS_GROUP_REF_SYSTEM_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_PROJECT_USERS_GROUP_REF_SYSTEM_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_B_REFERENCE_SYSTEM_U2" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_BU_D_REF_SYSTEM_BU_M" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_PROJECT_REF_SYSTEM_BU_D" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_USER_BUSINESS_GROUP_REF_SYSTEM_BU_D" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_BU_M_REF_SYSTEM_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_U_REFERENCE_SYSTEM_B2" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_F_REFERENCE_SYSTEM_U2" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_FUNCTIONSUB_REF_SYSTEM_FUNCTION" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_ROLE_FUNCTION_REF_SYSTEM_FUNCTION" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_FUNCTION_PLANT_REF_SYSTEM_PLANT" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_USER_FUNPLANT_REF_SYSTEM_FUNCTION_PLANT" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_WARNING__REFERENCE_SYSTEM_F2" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_WARNING__REFERENCE_SYSTEM_F3" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_FUNCTIONSUB_REF_SYSTEM_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_R_REFERENCE_SYSTEM_F2" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_ORGANIZATION_REF_SYSTEM_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_ORGANIZATIONBOM_REF_SYSTEM_ORGANIZATION" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_ORGANIZATIONBOM_REF_SYSTEM_ORGANIZATIONUNIT_C" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_USERORG_REF_SYSTEM_ORGANIZATION" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_O_REFERENCE_SYSTEM_U2" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_PLANT_REF_SYSTEM_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_USER_PLANT_REF_SYSTEM_PLANT" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_R_REFERENCE_SYSTEM_U2" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_ROLE_FUNCTION_REF_SYSTEM_ROLE" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_USER_ROLE_REF_SYSTEM_ROLE" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_R_REFERENCE_SYSTEM_R2" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_R_REFERENCE_SYSTEM_U3" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_ROLE_FUNCTIONSUB_REF_SYSTEM_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_U_REFERENCE_SYSTEM_U3" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_USER_BUSINESS_GROUP_REF_SYSTEM_USERS_M" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_USER_FUNPLANT_REF_SYSTEM_USERS" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_U_REFERENCE_SYSTEM_U4" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_USER_PLANT_REF_SYSTEM_USERS_M" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_U_REFERENCE_SYSTEM_U2" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_USERORG_REF_SYSTEM_USERS_M" ManuallyRouted="false" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_USERORG_REF_SYSTEM_USERS1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SPPEntityModel.FlowChart_Master" Width="1.5" PointX="9.75" PointY="18.625" />
+        <AssociationConnector Association="SPPEntityModel.FK_FLOWCHAR_REFERENCE_FLOWCHAR5" />
+        <AssociationConnector Association="SPPEntityModel.FK_FLOWCHAR_REFERENCE_FLOWCHAR44" />
+        <AssociationConnector Association="SPPEntityModel.FK_FLOWCHART_MASTER_REF_SYSTEM_PROJECT" />
+        <AssociationConnector Association="SPPEntityModel.FK_PRODUCT__REFERENCE_FLOWCHARa" />
+        <AssociationConnector Association="SPPEntityModel.FK_PRODUCT_INPUT_HISTORY_REF_FLOWCHART_MASTER" />
+        <AssociationConnector Association="SPPEntityModel.FK_FLOWCHAR_REFERENCE_SYSTEM_U56" />
+        <AssociationConnector Association="SPPEntityModel.FK_FLOWCHAR_REFERENCE_SYSTEM_U55" />
+        <AssociationConnector Association="SPPEntityModel.FK_FLOWCHAR_REFERENCE_SYSTEM_U57" />
+        <AssociationConnector Association="SPPEntityModel.FK_FLOWCHAR_REFERENCE_SYSTEM_U60" />
+        <AssociationConnector Association="SPPEntityModel.FK_FLOWCHAR_REFERENCE_SYSTEM_U54" />
+        <AssociationConnector Association="SPPEntityModel.FK_PRODUCT__REFERENCE_SYSTEM_U64" />
+        <AssociationConnector Association="SPPEntityModel.FK_PRODUCT__REFERENCE_SYSTEM_U61" />
+        <AssociationConnector Association="SPPEntityModel.FK_PRODUCT__REFERENCE_SYSTEM_U62" />
+        <AssociationConnector Association="SPPEntityModel.FK_PROJECT__REFERENCE_SYSTEM_U59" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_F_REFERENCE_SYSTEM_U63" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_P_REFERENCE_SYSTEM_U58" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_U_REFERENCE_SYSTEM_U50" />
+        <AssociationConnector Association="SPPEntityModel.FK_FlowChart_Detail_Temp_System_Function_Plant" />
+        <AssociationConnector Association="SPPEntityModel.FK_SYSTEM_USER_ROLE_REF_SYSTEM_USERS" />
+        <EntityTypeShape EntityType="SPPEntityModel.WIP_Change_History" Width="1.5" PointX="3" PointY="20.125" />
+        <AssociationConnector Association="SPPEntityModel.FK_WIP_CHAN_REFERENCE_SYSTEM_U" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

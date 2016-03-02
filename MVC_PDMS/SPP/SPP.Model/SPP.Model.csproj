@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1BEE001D-DDEB-47FC-A64C-4D65D83F3774}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SPP.Model</RootNamespace>
+    <AssemblyName>SPP.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EntityDTO\FlowChartDetailDTO.cs" />
+    <Compile Include="EntityDTO\FlowChartDetailTempDTO.cs" />
+    <Compile Include="EntityDTO\FlowChartMasterDTO.cs" />
+    <Compile Include="EntityDTO\EnumerationDTO.cs" />
+    <Compile Include="EntityDTO\FlowChartMgDataDTO.cs" />
+    <Compile Include="EntityDTO\FlowChartMgDataTempDTO.cs" />
+    <Compile Include="EntityDTO\SubUserOrgDTO.cs" />
+    <Compile Include="EntityDTO\ProductDataDTO.cs" />
+    <Compile Include="EntityDTO\SubUserPlantDTO.cs" />
+    <Compile Include="EntityDTO\SystemBUDDTO.cs" />
+    <Compile Include="EntityDTO\SystemBUMDTO.cs" />
+    <Compile Include="EntityDTO\SystemFunctionPlantDTO.cs" />
+    <Compile Include="EntityDTO\SystemFunctionSubDTO.cs" />
+    <Compile Include="EntityDTO\SystemOrgAndBomDTO.cs" />
+    <Compile Include="EntityDTO\SystemOrgBomDTO.cs" />
+    <Compile Include="EntityDTO\SystemOrgDTO.cs" />
+    <Compile Include="EntityDTO\SystemPlantDTO.cs" />
+    <Compile Include="EntityDTO\SystemProjectDTO.cs" />
+    <Compile Include="EntityDTO\SystemUserRoleDTO.cs" />
+    <Compile Include="EntityDTO\SystemRoleDTO.cs" />
+    <Compile Include="EntityDTO\SystemRoleFunctionDTO.cs" />
+    <Compile Include="EntityDTO\SystemUserBusinessGroupDTO.cs" />
+    <Compile Include="EntityDTO\WarningListDTO.cs" />
+    <Compile Include="InfrastructureModel\AuthorizedLoginUser.cs" />
+    <Compile Include="InfrastructureModel\BaseModel.cs" />
+    <Compile Include="EntityDTO\EntityDTOBase.cs" />
+    <Compile Include="EntityDTO\SystemFunctionDTO.cs" />
+    <Compile Include="EntityDTO\SystemUserDTO.cs" />
+    <Compile Include="InfrastructureModel\LoginUserModel.cs" />
+    <Compile Include="InfrastructureModel\Message.cs" />
+    <Compile Include="InfrastructureModel\Page.cs" />
+    <Compile Include="InfrastructureModel\PagedListModel.cs" />
+    <Compile Include="InfrastructureModel\PageUnauthorizedElement.cs" />
+    <Compile Include="InfrastructureModel\PushBotsModel.cs" />
+    <Compile Include="InfrastructureModel\SystemMenu.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ChartVM.cs" />
+    <Compile Include="ViewModels\EventReportManager\WarningListVM.cs" />
+    <Compile Include="ViewModels\FlowChart\FlowChartModelSearch.cs" />
+    <Compile Include="ViewModels\EventReportManager\EnumVM.cs" />
+    <Compile Include="ViewModels\EventReportManager\PPCheckDataVM.cs" />
+    <Compile Include="ViewModels\FlowChart\FlowChartPlanManagerVM.cs" />
+    <Compile Include="ViewModels\FlowChart\PrjectListVM.cs" />
+    <Compile Include="ViewModels\ProductData\ProcessDateSearch.cs" />
+    <Compile Include="ViewModels\ReportDataVM.cs" />
+    <Compile Include="ViewModels\Settings\BUDetailModelSearch.cs" />
+    <Compile Include="ViewModels\Settings\BUModelSearch.cs" />
+    <Compile Include="ViewModels\Settings\FuncPlantVM.cs" />
+    <Compile Include="ViewModels\Settings\FunctionMaintenanceVM.cs" />
+    <Compile Include="ViewModels\Settings\OrgBomModelSearch.cs" />
+    <Compile Include="ViewModels\Settings\OrgBomVM.cs" />
+    <Compile Include="ViewModels\Settings\OrgModelSearch.cs" />
+    <Compile Include="ViewModels\Settings\PlantModelSearch.cs" />
+    <Compile Include="ViewModels\Settings\UserOrgSetting.cs" />
+    <Compile Include="ViewModels\Settings\UserRoleSettingVM.cs" />
+    <Compile Include="ViewModels\Settings\RoleFunctionSettingVM.cs" />
+    <Compile Include="ViewModels\Settings\RoleModelSearch.cs" />
+    <Compile Include="ViewModels\Settings\UserBUSettingSearch.cs" />
+    <Compile Include="ViewModels\Settings\UserPlantSettingVM.cs" />
+    <Compile Include="ViewModels\UserInfoVM.cs" />
+    <Compile Include="ViewModels\Settings\UserModelSearch.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SPP.Common\SPP.Common.csproj">
+      <Project>{09b6a6ab-8dc7-4d94-8ee4-248360ac54b3}</Project>
+      <Name>SPP.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\CapacitySpace\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

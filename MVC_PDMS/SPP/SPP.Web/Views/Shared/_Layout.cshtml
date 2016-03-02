@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>STRATEGIC PLANNING Portal - @ViewBag.PageTitle </title>
+
+    <link rel="stylesheet" href="~/Content/AdminLTE/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/AdminLTE/dist/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Scripts/plugins/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" href="~/Content/AdminLTE/dist/css/ionicons.min.css" />
+    <link rel="stylesheet" href="~/Content/Css/icomoonFonts.css" />
+
+
+    <link rel="stylesheet" type="text/css" href="~/Content/css/StickyTableHeaders/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/StickyTableHeaders/demo.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/css/StickyTableHeaders/component.css" />
+
+
+    <script src="~/Scripts/ECharts/echarts.min.js"></script>
+    <script src="~/Scripts/StickyTableHeaders/jquery.stickyheader.js"></script>
+    <script src="~/Scripts/StickyTableHeaders/jquery.ba-throttle-debounce.min.js"></script>
+
+
+    @Styles.Render("~/Content/DataTables")
+    @Styles.Render("~/Content/kendo")
+    @Styles.Render("~/Content/AdminLTE_Theme")
+    @Styles.Render("~/Content/css/css")
+
+    <!--RWD n Portal n Special CSS-->
+    <link rel="stylesheet" href="~/Content/css/Portal-xs.css" media="screen and (max-width: 768px)">
+    <link rel="stylesheet" href="~/Content/css/Portal-sm.css" media="screen and (min-width: 768px) and (max-width: 992px)">
+    <link rel="stylesheet" href="~/Content/css/Portal-md.css" media="screen and (min-width: 992px) and (max-width: 1200px)">
+    <link rel="stylesheet" href="~/Content/css/Portal-lg.css" media="screen and (min-width: 1200px)">
+
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="hold-transition skin-black sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+        <!-- Main Header -->
+        <header class="main-header portal-header">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <!-- Header Navbar -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Logo -->
+                <a href="@Url.Action("Index","Home")" class="logo">
+                    <!-- mini logo for sidebar mini 50x50 pixels -->
+                    <span class="logo-mini"><img src="~/Content/img/logo/logo1.png" class="logo-mini-logoimg" /></span>
+                    <!-- logo for regular state and mobile devices -->
+                    <span class="logo-lg"><img src="~/Content/img/logo/logo1.png" class="logo-lg-logoimg" /></span>
+                </a>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!--GMT+8-->
+                        <li>
+                            <!-- Menu Toggle Button -->
+                            <h5 class="padding-t-7 padding-r-5 text-gray">
+                                <span class="hidden-md hidden-lg">GMT+8 Taipei</span> <span class="hidden-xs hidden-sm"> (GMT+08:00)</span> <span class="hidden-xs hidden-sm">Taipei</span>
+                            </h5>
+                        </li>
+                        <!-- Tasks Menu -->
+                        <li class="dropdown tasks-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-tasks"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">Tasks</li>
+                                <li>
+                                    <!-- Inner menu: contains the tasks -->
+                                    <ul class="menu">
+
+                                        <li class="my-task">
+                                            <!-- Task item -->
+                                            <div class="row">
+                                                <div class="col-md-12 pull-left">
+                                                    No data
+                                                </div>
+                                            </div>
+                                        </li><!-- end task item -->
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- User Account Menu -->
+                        <li class="dropdown user user-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <!-- The user image in the navbar-->
+                                <img src="~/Content/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                <span class="hidden-xs">@SPP.Core.BaseController.CurrentUser.UserName</span> &nbsp;
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-right">
+                                        <a href="@Url.Action("SignOut","Login")" class="btn btn-primary btn-flat" id="js_btn_signout"><i class="fa fa-sign-out"></i> Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Menu -->
+        @{
+            Html.RenderAction("MenuListPartial", "Home");
+        }
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper portal-content-wrapper">
+            @if (!string.IsNullOrEmpty(ViewBag.PageTitle))
+            {
+                <!--Content Header (Page header)-->
+                <section class="content-header portal-content-header">
+                    <h1>
+                        @ViewBag.PageTitle
+                    </h1>
+                </section>
+            }
+
+            @RenderBody()
+        </div>
+        <!-- Main Footer -->
+        <footer class="main-footer portal-footer">
+            <!-- To the right -->
+            <div class="pull-right hidden-xs">
+                <!--Footer 右邊區塊-->
+            </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; 2014 Jabil</strong> All rights reserved.
+        </footer>
+        <!-- Add the sidebar's background. This div must be placed
+         immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div><!-- ./wrapper -->
+    @if (!string.IsNullOrEmpty(ViewBag.PageID))
+    { <div id="system_page_id" data-id="@ViewBag.PageID" data-url="@string.Format("http://{0}:{1}{2}",HttpContext.Current.Request.Url.Host,Request.Url.Port,Url.Action("PageUnauthorizedElements", "Home"))"></div>}
+
+    @Scripts.Render("~/bundles/basic_framework")
+    @Scripts.Render("~/bundles/DataTables")
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/spp-framework")
+
+    @RenderSection("ViewModals", false)
+    @RenderSection("ViewScripts", false)
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            (function () {
+                SPP.Utility.HideUnauthorizedElements();
+            })();
+
+            $('#js_btn_signout').click(function () {
+                SPP.Storage.sessionStorage.removeAll();
+            });
+        });
+    </script>
+</body>
+</html>
